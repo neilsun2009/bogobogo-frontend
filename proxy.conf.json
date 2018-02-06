@@ -1,0 +1,10 @@
+{
+  "/123api": {
+    "target": "http://localhost:4201",
+    "secure": false
+  },
+  "/123socket.io": {
+    "target": "http://localhost:2017",
+    "secure": false
+  }
+}

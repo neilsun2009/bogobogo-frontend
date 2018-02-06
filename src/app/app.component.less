@@ -1,0 +1,50 @@
+@import './global.less';
+.content {
+  // height: 100vh;
+  height: 100%;
+  min-height: 500px;
+  background-color: #00B8DE;
+}
+footer {
+  background-color: #fff;
+  color: #eee;
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 20px;
+  h1 {
+    font-size: 40px;
+    color: #fff;
+    position: relative;
+    top: -30px;
+    margin-bottom: -30px
+  }
+  a {
+    color: #ECF0F1;
+    transition: all 0.5s;
+    &:hover {
+      color: #BDC3C7;
+    }
+    &.beian {
+      color: #f2f2f2;
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  footer {
+    h1 {
+      font-size: 30px;
+      top: -20px;
+      margin-bottom: -20px;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  footer {
+    font-size: 12px;
+    h1 {
+      font-size: 24px;
+      top: -18px;
+      margin-bottom: -18px;
+    }
+  }
+}

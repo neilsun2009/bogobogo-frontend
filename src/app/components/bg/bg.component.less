@@ -1,0 +1,28 @@
+@import '../../global.less';
+.container {
+  .full-height;
+  .bottom;
+  position: relative;
+  background-color: #000000;
+  .half {
+    background-color: #000000;
+  }
+  .band {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 200%;
+    height: 100%;
+    z-index: 0;
+    animation: band-anim 1.2s ease-in-out;
+  }
+}
+
+@keyframes band-anim {
+  from {
+    left: -200%;
+  }
+  to {
+    left: 50%;
+  }
+}

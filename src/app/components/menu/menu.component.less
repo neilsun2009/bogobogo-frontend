@@ -1,0 +1,151 @@
+@import '../../global.less';
+ul {
+  position: absolute;
+  padding: 10px 0;      
+  left: 50%;
+  top: 50%;
+  // transform-style: preserve-3d;
+  // perspective: 500px;
+  // perspective-origin: 50% 50%;
+  transform: translate(-50%, -50%);
+  // margin-top: -20px;
+  font-size: 60px;
+  line-height: 60px;
+  font-weight: bold;
+  width: 70px;
+  text-align: center;
+  font-family: 'Rockwell';
+  list-style-type: none;
+  // box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  li {
+    padding: 2px 0;
+    transition: all 0.5s;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    perspective-origin: 50% 50%;
+    background-color: #fff;    
+    &:hover{
+      background-color: #000;
+      &:after, &:before {
+        transform: rotateY(0deg);
+        opacity: 1;
+      }
+      a {
+        color: #fff;
+      }
+    }             
+    a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      color: #000;
+    }
+    &:after, &:before {
+      position: absolute;
+      letter-spacing: 5px;
+      // width: 0;
+      opacity: 0;
+      // overflow: hidden;
+      transition: 0.5s all;
+    }
+    &:after {
+      margin-left: 10px;
+      left: 100%;
+      transform-origin: left;
+      transform: rotateY(90deg);
+    }
+    &:before {               
+      margin-right: 10px;
+      right: 100%;
+      transform-origin: right;
+      transform: rotateY(-90deg);          
+    }
+    &:nth-of-type(1) {
+      &:after {
+        content: 'IO';
+      }
+    }
+    &:nth-of-type(2) {
+      &:before {
+        content: 'C';
+      }
+      &:after {
+        content: 'DING';
+      }
+    }
+    &:nth-of-type(3) {    
+      &:before {
+        content: 'DESI';
+      }
+      &:after {
+        content: 'N';
+      }
+    }
+    &:nth-of-type(4) {
+      &:before {
+        content: 'TRANSLATI';
+      }
+      &:after {
+        content: 'N';
+      }
+    }
+    &:nth-of-type(5) {
+      &:after {
+        content: 'YTES';
+      }
+    }
+    &:nth-of-type(6) {
+      &:before {
+        content: 'W';
+      }
+      &:after {
+        content: 'RDS';
+      }
+    }
+    &:nth-of-type(7) {
+      &:before {
+        content: 'BLO';
+      }
+    }
+    &:nth-of-type(8) {
+      &:before {
+        content: 'M';
+      }
+      &:after {
+        content: 'RE';
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  ul {
+    font-size: 50px;
+    line-height: 50px;
+    width: 55px;
+  }
+}
+@media screen and (max-width: 500px) {
+  ul {
+    font-size: 30px;
+    line-height: 30px;
+    width: 40px;       
+    li {
+      &:after, &:before {
+        opacity: 1;
+        transform: rotateY(0deg);
+      }
+      &:after {
+        margin-left: 5px;
+      }
+      &:before {
+        margin-right: 5px;
+      }
+      &:nth-of-type(4) {
+        &:before {
+          content: 'T\'LATI';
+        }
+      }
+    }
+  }
+}

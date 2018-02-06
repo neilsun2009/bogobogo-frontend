@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+	font-family: 'Rockwell';
+	src: url('assets/fonts/rockwell.eot');
+	src: url('assets/fonts/rockwell.woff') format('woff'), url('assets/fonts/rockwell.ttf') format('truetype'), url('assets/fonts/rockwell.svg') format('svg');
+	font-weight: normal;
+  font-style: normal;
+  letter-spacing: 5px;
+}
+@font-face {
+	font-family: 'Futura';
+	src: url('assets/fonts/futura.eot');
+	src: url('assets/fonts/futura.woff') format('woff'), url('assets/fonts/futura.ttf') format('truetype'), url('assets/fonts/futura.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+html, body {
+  width: 100%;
+  min-width: 300px;
+  min-height: 500px;
+  font-family: 'Futura', Helvetica, Arial, 'Microsoft Yahei', '微软雅黑';
+  overflow-x: hidden;
+}
+pre, input, button, option {
+  font-family: 'Futura', Helvetica, Arial, 'Microsoft Yahei', '微软雅黑';
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rockwell', Helvetica, Arial, 'Microsoft Yahei', '微软雅黑';
+}
