@@ -4,9 +4,11 @@ import { Subject } from 'rxjs/Subject';
 export class BgConfig {
     primaryColor?: string;
     secondaryColor?: string;
-    layerBg?: boolean;
+    layerBg?: string;
     showLoading?: boolean;
     loggedIn?: boolean;
+    showMenu?: boolean;
+    showTrigger?: boolean;
 }
 
 @Injectable()

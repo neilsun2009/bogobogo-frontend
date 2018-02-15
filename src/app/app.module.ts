@@ -7,21 +7,29 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { BgConfigService } from './services/bg-config.service';
+import { EaseOutService } from './services/ease-out.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
 import { HttpService } from './services/http.service';
 import { GeneralService } from './services/api/general.service';
+import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { BgComponent } from './components/bg/bg.component';
+import { MoreComponent } from './components/more/more.component';
+import { BioComponent } from './components/bio/bio.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     MenuComponent,
-    BgComponent
+    BgComponent,
+    MoreComponent,
+    BioComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +40,9 @@ import { BgComponent } from './components/bg/bg.component';
   ],
   providers: [
     BgConfigService,
+    EaseOutService,
     GlobalAuthGuard,
+    CanDeactivateGuard,
     HttpService,
     GeneralService
   ],

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { MyMock } from '../mock/mock';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -18,9 +18,7 @@ export class HttpService {
 
   constructor(
     private http: HttpClient,
-  ) {
-    new MyMock().start();
-  }
+  ) {}
 
   get<T>(url: string, callback: ({}) => void, errCallback: ({}) => void) {
     return this.http.get<T>(url).subscribe(

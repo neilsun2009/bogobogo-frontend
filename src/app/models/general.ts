@@ -2,6 +2,7 @@ class Cat {
   primaryColor: string;
   secondaryColor: string;
   layerBg: string;
+  title: string;
 }
 
 export class General {

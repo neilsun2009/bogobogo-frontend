@@ -1,12 +1,12 @@
 <!-- <div class="menu"> -->
   <ul>
-    <li [@left]="animStates[0]"><a routerLink="/">B</a></li>
-    <li [@right]="animStates[0]"><a routerLink="/">O</a></li>
-    <li [@left]="animStates[1]"><a routerLink="/">G</a></li>
-    <li [@right]="animStates[1]"><a routerLink="/">O</a></li>
-    <li [@left]="animStates[2]"><a routerLink="/">ß</a></li>
-    <li [@right]="animStates[2]"><a routerLink="/">Ø</a></li>
-    <li [@left]="animStates[3]"><a routerLink="/">G</a></li>
-    <li [@right]="animStates[3]" (click)="clickMore()"><a routerLink="/">O</a></li>
+    <li [@left]="animStates[0]" *ngIf="showMenu"><a routerLink="/bio">B</a></li>
+    <li [@right]="animStates[0]" *ngIf="showMenu"><a routerLink="/">O</a></li>
+    <li [@left]="animStates[1]" *ngIf="showMenu"><a routerLink="/">G</a></li>
+    <li [@right]="animStates[1]" *ngIf="showMenu"><a routerLink="/">O</a></li>
+    <li [@left]="animStates[2]" *ngIf="showMenu"><a routerLink="/">ß</a></li>
+    <li [@right]="animStates[2]" *ngIf="showMenu"><a routerLink="/">Ø</a></li>
+    <li [@left]="animStates[3]" *ngIf="showMenu"><a routerLink="/">G</a></li>
+    <li [@right]="animStates[3]" *ngIf="showMenu"><a routerLink="/more">O</a></li>
   </ul>
 <!-- </div> -->

@@ -1,11 +1,15 @@
 @import '../../global.less';
 .container {
-  .full-height;
-  .bottom;
-  position: relative;
-  background-color: #000000;
+  // .full-height;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-width: 300px;
+  height: 100vh;
+  background-color: #ffffff;
   .half {
-    background-color: #000000;
+    background-color: #ffffff;
   }
   .band {
     position: absolute;
@@ -15,6 +19,102 @@
     height: 100%;
     z-index: 0;
     animation: band-anim 1.2s ease-in-out;
+  }
+  .layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    transition: 0.2s all;
+  }
+}
+.trigger {
+  z-index: 100;
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  top: -10px;
+  left: 50%;
+  margin-left: -30px;  
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  background-color: #fff;
+  transform: rotateZ(45deg);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  overflow: hidden;
+  &:hover {
+    top: 0;
+  }
+  &:before, &:after {
+    content: 'B';
+    font-family: 'Rockwell';
+    display: inline-block;
+    transform: rotateZ(-45deg);
+    position: absolute;
+    transition: all 0.5s ease-out;
+    width: 60px;
+  }
+  &:before {
+    content: 'B';
+    left: 0;
+    top: 0;
+  }
+  &:after {
+    content: 'X';
+    color: #000;
+    left: 50px;
+    top: -50px;
+  }
+  &.active {
+    &:before {
+      left: -50px;
+      top: 50px;
+    }
+    &:after {
+      left: 0;
+      top: 0;
+    }
+  }
+}
+.menu-cover {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 98;
+  transform-origin: 50% 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .trigger {
+    width: 48px;
+    height: 48px;
+    font-size: 40px;
+    line-height: 48px;
+    margin-left: -24px;
+    top: -8px;
+    &:before, &:after {
+      width: 48px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .trigger {
+    width: 36px;
+    height: 36px;
+    font-size: 28px;
+    line-height: 36px;
+    margin-left: -18px;
+    top: -5px;
+    &:before, &:after {
+      width: 36px;
+    }
   }
 }
 

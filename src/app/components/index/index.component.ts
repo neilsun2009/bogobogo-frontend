@@ -21,7 +21,10 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     this.bgConfigService.setConfig({
       primaryColor: this.catConfig.primaryColor,
-      secondaryColor: this.catConfig.secondaryColor
+      secondaryColor: this.catConfig.secondaryColor,
+      layerBg: this.catConfig.layerBg,
+      showMenu: true,
+      showTrigger: false
     });
   }
 

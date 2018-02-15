@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { BgConfigService } from '../../services/bg-config.service';
 import { GeneralService } from '../../services/api/general.service';
@@ -14,17 +14,29 @@ import { GeneralService } from '../../services/api/general.service';
         style({transform: 'translateX(-3000px)'}),
         animate('1000ms 100ms ease-out')
       ]),
+      transition('one => void', [
+        animate('800ms ease-in', style({transform: 'translateX(-3000px)'}))
+      ]),
       transition('void => two', [
         style({transform: 'translateX(-3000px)'}),
         animate('1000ms 300ms ease-out')
+      ]),
+      transition('two => void', [
+        animate('800ms 100ms ease-in', style({transform: 'translateX(-3000px)'}))
       ]),
       transition('void => three', [
         style({transform: 'translateX(-3000px)'}),
         animate('1000ms 500ms ease-out')
       ]),
+      transition('three => void', [
+        animate('800ms 200ms ease-in', style({transform: 'translateX(-3000px)'}))
+      ]),
       transition('void => four', [
         style({transform: 'translateX(-3000px)'}),
         animate('1000ms 700ms ease-out')
+      ]),
+      transition('four => void', [
+        animate('800ms 300ms ease-in', style({transform: 'translateX(-3000px)'}))
       ])
     ]),
     trigger('right', [
@@ -33,17 +45,29 @@ import { GeneralService } from '../../services/api/general.service';
         style({transform: 'translateX(3000px)'}),
         animate('1000ms 200ms ease-out')
       ]),
+      transition('one => void', [
+        animate('800ms 50ms ease-in', style({transform: 'translateX(3000px)'}))
+      ]),
       transition('void => two', [
         style({transform: 'translateX(3000px)'}),
         animate('1000ms 400ms ease-out')
+      ]),
+      transition('two => void', [
+        animate('800ms 150ms ease-in', style({transform: 'translateX(3000px)'}))
       ]),
       transition('void => three', [
         style({transform: 'translateX(3000px)'}),
         animate('1000ms 600ms ease-out')
       ]),
+      transition('three => void', [
+        animate('800ms 250ms ease-in', style({transform: 'translateX(3000px)'}))
+      ]),
       transition('void => four', [
         style({transform: 'translateX(3000px)'}),
         animate('1000ms 800ms ease-out')
+      ]),
+      transition('four => void', [
+        animate('800ms 350ms ease-in', style({transform: 'translateX(3000px)'}))
       ])
     ])
   ]
@@ -51,6 +75,7 @@ import { GeneralService } from '../../services/api/general.service';
 export class MenuComponent implements OnInit {
 
   animStates: string[];
+  @Input() showMenu: boolean;
 
   constructor(
     private bgConfigService: BgConfigService,
@@ -60,12 +85,5 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {}
-
-  clickMore() {
-    this.bgConfigService.setConfig({
-      primaryColor: this.generalService.generalData.cats.more.primaryColor,
-      secondaryColor: this.generalService.generalData.cats.more.secondaryColor
-    });
-  }
 
 }

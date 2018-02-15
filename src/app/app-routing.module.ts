@@ -2,13 +2,33 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './components/index/index.component';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
+import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
+import { MoreComponent } from './components/more/more.component';
+import { BioComponent } from './components/bio/bio.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    component: IndexComponent,
-    canActivate: [GlobalAuthGuard]
+    // pathMatch: 'full',
+    // component: IndexComponent,
+    canActivate: [GlobalAuthGuard],
+    // canActivateChild: [GlobalAuthGuard],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: IndexComponent
+      },
+      {
+        path: 'more',
+        component: MoreComponent,
+        // canDeactivate: [CanDeactivateGuard]
+      },
+      {
+        path: 'bio',
+        component: BioComponent,
+      }
+    ]
   },
   // {
   //   path: 'admin',

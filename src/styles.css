@@ -4,7 +4,7 @@
 	src: url('assets/fonts/rockwell.woff') format('woff'), url('assets/fonts/rockwell.ttf') format('truetype'), url('assets/fonts/rockwell.svg') format('svg');
 	font-weight: normal;
   font-style: normal;
-  letter-spacing: 5px;
+  letter-spacing: 0.1em;
 }
 @font-face {
 	font-family: 'Futura';
@@ -33,4 +33,5 @@ pre, input, button, option {
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Rockwell', Helvetica, Arial, 'Microsoft Yahei', '微软雅黑';
+  letter-spacing: 0.1em;
 }

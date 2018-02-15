@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class GeneralService {
 
-  private generalUrl = 'http://localhost:4201/api/general';
+  private generalUrl = '/api/general';
 
   generalData: General;
 

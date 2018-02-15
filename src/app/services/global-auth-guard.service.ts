@@ -5,14 +5,16 @@ import { CanActivateChild, Router,
     NavigationExtras } from '@angular/router';
 import { GeneralService } from './api/general.service';
 import { BgConfigService } from './bg-config.service';
+import { EaseOutService } from './ease-out.service';
 
 @Injectable()
-export class GlobalAuthGuard implements CanActivate/*, CanActivateChild*/ {
+export class GlobalAuthGuard implements CanActivate, CanActivateChild {
 
   constructor(
     private generalService: GeneralService,
     private router: Router,
-    private bgConfigService: BgConfigService
+    private bgConfigService: BgConfigService,
+    private easeOutService: EaseOutService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -31,13 +33,20 @@ export class GlobalAuthGuard implements CanActivate/*, CanActivateChild*/ {
     // return true;
   }
 
-  // canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-  //   // store the url for login/signup redirecting
-  //   const url = state.url;
-  //   if (url !== '/signup' && url !== '/login') {
-  //     this.authService.redirectUrl = state.url;
-  //   }
-  //   return true;
-  // }
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    // store the url for login/signup redirecting
+    // const url = state.url;
+    // if (url !== '/signup' && url !== '/login') {
+    //   this.authService.redirectUrl = state.url;
+    // }
+    // const now = Date.now();
+    // this.easeOutService.setEaseOut(true);
+    // while (1) {
+    //   if (Date.now() - now >= 500) {
+    //     break;
+    //   }
+    // }
+    return true;
+  }
 
 }
