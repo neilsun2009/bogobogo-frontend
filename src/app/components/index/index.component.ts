@@ -23,7 +23,7 @@ export class IndexComponent implements OnInit {
       primaryColor: this.catConfig.primaryColor,
       secondaryColor: this.catConfig.secondaryColor,
       layerBg: this.catConfig.layerBg,
-      showMenu: true,
+      showMenu: false,
       showTrigger: false
     });
   }

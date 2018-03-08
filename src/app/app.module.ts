@@ -19,7 +19,13 @@ import { MenuComponent } from './components/menu/menu.component';
 import { BgComponent } from './components/bg/bg.component';
 import { MoreComponent } from './components/more/more.component';
 import { BioComponent } from './components/bio/bio.component';
+import { CodingComponent } from './components/coding/coding.component';
+import { DesignComponent } from './components/design/design.component';
+import { TranslationComponent } from './components/translation/translation.component';
 import { HeaderComponent } from './components/header/header.component';
+import { BytesComponent } from './components/bytes/bytes.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { WordsComponent } from './components/words/words.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,12 @@ import { HeaderComponent } from './components/header/header.component';
     BgComponent,
     MoreComponent,
     BioComponent,
+    CodingComponent,
+    DesignComponent,
+    TranslationComponent,
+    BytesComponent,
+    BlogComponent,
+    WordsComponent,
     HeaderComponent
   ],
   imports: [

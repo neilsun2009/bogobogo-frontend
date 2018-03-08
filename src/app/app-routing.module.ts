@@ -5,6 +5,12 @@ import { GlobalAuthGuard } from './services/global-auth-guard.service';
 import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
 import { MoreComponent } from './components/more/more.component';
 import { BioComponent } from './components/bio/bio.component';
+import { CodingComponent } from './components/coding/coding.component';
+import { DesignComponent } from './components/design/design.component';
+import { TranslationComponent } from './components/translation/translation.component';
+import { BytesComponent } from './components/bytes/bytes.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { WordsComponent } from './components/words/words.component';
 
 const appRoutes: Routes = [
   {
@@ -27,6 +33,30 @@ const appRoutes: Routes = [
       {
         path: 'bio',
         component: BioComponent,
+      },
+      {
+        path: 'coding',
+        component: CodingComponent,
+      },
+      {
+        path: 'design',
+        component: DesignComponent,
+      },
+      {
+        path: 'translation',
+        component: TranslationComponent,
+      },
+      {
+        path: 'bytes',
+        component: BytesComponent,
+      },
+      {
+        path: 'blog',
+        component: BlogComponent,
+      },
+      {
+        path: 'words',
+        component: WordsComponent,
       }
     ]
   },

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { GeneralService } from '../../services/api/general.service';
 import { EaseOutService } from '../../services/ease-out.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
@@ -30,11 +30,13 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     ])
   ]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   @Input() cat: string;
   @Input() title: string;
   general: any;
+  scrollTopSVG: string;
+  scrollTopTitle: string;
   // show: boolean;
 
   constructor(
@@ -49,6 +51,21 @@ export class HeaderComponent implements OnInit {
     // this.easeOutService.easeOut$.subscribe((easeOut) => {
     //   console.log(easeOut);
     // });
+    // on scroll
+    this.scrollHander();
+    window.onscroll = () => {
+      this.scrollHander();
+    };
+  }
+
+  scrollHander() {
+    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    this.scrollTopSVG = `-${scrollTop / 2}px`;
+    this.scrollTopTitle = `-${scrollTop / 3}px`;
+  }
+
+  ngOnDestroy() {
+    window.onscroll = null;
   }
 
   // ngOnDestroy() {
