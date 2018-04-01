@@ -46,4 +46,35 @@ export class HttpService {
     );
   }
 
+  put<T>(url: string, body: {}, callback: ({}) => void, errCallback: ({}) => void) {
+    return this.http.put<T>(url, body).subscribe(
+        (data) => {
+            callback(data);
+        },
+        (err) => {
+            errCallback(err);
+        }
+    );
+  }
+
+  delete<T>(url: string, body: {}, callback: ({}) => void, errCallback: ({}) => void) {
+    return this.http.delete<T>(url, body).subscribe(
+        (data) => {
+            callback(data);
+        },
+        (err) => {
+            errCallback(err);
+        }
+    );
+  }
+
+  concatUrl(url: string, keys: string[], values: string[]): string {
+    if (url[url.length - 1] !== '?') {
+        url += '?';
+    }
+    for (let i = 0, len = keys.length; i < len; ++i) {
+        url += values[i] && values[i].length ? `&${keys[i]}=${values[i]}` : '';
+    }
+    return url;
+  }
 }

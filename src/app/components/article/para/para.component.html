@@ -1,0 +1,18 @@
+<div class="title container" [class.pending]="pendingTitle" [style.background-color]="primaryColor">
+  <div class="bg" [style.background-color]="secondaryColor"></div>
+  <h1 class="text" [style.color]="primaryColor">
+    {{para.title}}
+  </h1>
+</div>
+<div class="para container" [class.pending]="pendingContent" [class.right]="para.mode === 'right'"
+  [class.middle]="para.mode === 'middle'"
+  [style.background-color]="para.mode === 'right' ? primaryColor : secondaryColor">
+  <div class="bg" [style.background-color]="para.mode === 'right' ? secondaryColor : primaryColor">
+  </div>
+  <div class="content">
+    <div class="text" [innerHTML]="sanitizedHTML"></div>
+    <div class="image" *ngIf="para.mode !== 'middle'">
+      <img [title]="para.title" [src]="para.cover">      
+    </div>
+  </div>
+</div>

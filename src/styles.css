@@ -1,3 +1,5 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 @font-face {
 	font-family: 'Rockwell';
 	src: url('assets/fonts/rockwell.eot');
@@ -28,10 +30,199 @@ html, body {
   font-family: 'Futura', Helvetica, Arial, 'Microsoft Yahei', '微软雅黑';
   overflow-x: hidden;
 }
-pre, input, button, option {
+input, button, option,
+.mat-button, .mat-fab, .mat-flat-button, .mat-icon-button, .mat-mini-fab,
+.mat-raised-button, .mat-stroked-button, .mat-form-field,
+.mat-slide-toggle-content, .mat-select, .mat-option, .mat-dialog-title {
   font-family: 'Futura', Helvetica, Arial, 'Microsoft Yahei', '微软雅黑';
+}
+pre, code {
+  font-family: 'Lucida Console', 'Courier New',  'monospace';
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Rockwell', Helvetica, Arial, 'Microsoft Yahei', '微软雅黑';
   letter-spacing: 0.1em;
+}
+
+/* article interpreted HTML */
+#article .para .content .text p,
+#article .para .content .text blockquote,
+#article .para .content .text pre,
+#article .para .content .text ul,
+#article .para .content .text ol,
+#article .para .content .text table {
+  margin-bottom: 30px;
+}
+#article .para .content .text a {
+  color: inherit;
+  font-weight: bold;
+}
+#article .para .content .text a:hover {
+  text-decoration: underline;
+}
+#article .para .content .text blockquote {
+  position: relative;
+  padding: 15px 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+#article .para .content .text blockquote::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 10px;
+  height: 100%;
+  content: '';
+  display: inline-block;
+}
+#article .para .content .text pre {
+  font-size: 14px;
+  line-height: 16px;
+  background-color: rgba(255,255,255,0.8);
+  color: #000;
+  padding: 5px 10px;
+  border: 3px solid #ddd;
+  border-radius: 5px;
+}
+#article .para .content .text pre code {
+  display: block;
+}
+#article .para .content .text img {
+  margin: 0 auto;
+  display: block;
+  max-width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.5s;
+}
+#article .para .content .text img:hover {
+  transform: scale(1.01) translateY(-10px);
+  opacity: 0.9;
+  background-color: rgba(0,0,0,0.1);
+}
+#article .para .content .text table{
+  width: 100%;
+}
+#article .para .content .text table td {
+  padding: 0 3px;
+}
+#article .para .content .text table tr th {
+  text-align: center;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+#article .para .content .text table tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+#article .para .content .text table tr:nth-of-type(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+#article .para .content .text .progress {
+  margin-bottom: 20px;
+}
+
+#article .para .content .text .progress .outer {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+#article .para .content .text .progress .outer .bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  background-image: repeating-linear-gradient(135deg, #fff, #fff 20px, rgba(255,255,255,0.8) 20px, rgba(255,255,255,0.8) 40px);
+  border-radius: 5px;
+  transition: all 0.5s ease-out;
+}
+
+#article .para .content .text .progress .outer .bar.init {
+  width: 0 !important;
+}
+
+/* override wang-editor style */
+.w-e-toolbar {
+  display: inline-block !important;
+}
+.w-e-toolbar:after {
+  display: table;
+  content: '';
+  clear: both;
+}
+.w-e-toolbar .w-e-menu {
+  float: left;
+}
+.w-e-text-container.hide {
+  height: 0;
+  opacity: 0;
+}
+.w-e-text {
+  max-height: 300px;
+}
+.w-e-text .progress .outer {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.w-e-text .progress .outer .bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  background-image: repeating-linear-gradient(135deg, #000, #000 20px, rgba(255,255,255,0.8) 20px, rgba(255,255,255,0.8) 40px);
+  border-radius: 5px;
+  transition: all 0.5s ease-out;
+}
+
+
+@media screen and (max-width: 1000px) {
+  #article .para .content .text p,
+  #article .para .content .text blockquote,
+  #article .para .content .text pre,
+  #article .para .content .text ul,
+  #article .para .content .text ol,
+  #article .para .content .text table {
+    margin-bottom: 26px;
+  }
+  #article .para .content .text .progress {
+    margin-bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #article .para .content .text p,
+  #article .para .content .text blockquote,
+  #article .para .content .text pre,
+  #article .para .content .text ul,
+  #article .para .content .text ol,
+  #article .para .content .text table {
+    margin-bottom: 22px;
+  }
+  #article .para .content .text blockquote {
+    padding: 5px 12px;
+  }
+  #article .para .content .text blockquote::before {
+    width: 5px;
+  }
+  #article .para .content .text pre {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  #article .para .content .text .progress {
+    margin-bottom: 12px;
+  }
+  #article .para .content .text .progress .outer .bar {
+    height: 14px;
+  }
+  #article .para .content .text .progress .outer {
+    height: 14px;
+  }
 }

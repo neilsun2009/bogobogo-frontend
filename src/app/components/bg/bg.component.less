@@ -44,7 +44,7 @@
   text-align: center;
   background-color: #fff;
   transform: rotateZ(45deg);
-  transition: all 0.2s ease-out;
+  transition: all 0.5s ease-out;
   cursor: pointer;
   overflow: hidden;
   &:hover {
@@ -80,6 +80,12 @@
       top: 0;
     }
   }
+  &.scrolled {
+    top: -50px;
+    &:hover {
+      top: 0;
+    }
+  }
 }
 .menu-cover {
   position: fixed;
@@ -101,6 +107,9 @@
     &:before, &:after {
       width: 40px;
     }
+    &.scrolled {
+      top: -40px;
+    }
   }
 }
 
@@ -114,6 +123,9 @@
     top: -5px;
     &:before, &:after {
       width: 36px;
+    }
+    &.scrolled {
+      top: -36px;
     }
   }
 }

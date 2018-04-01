@@ -11,26 +11,26 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       state('*', style({transform: 'translateY(0)'})),
       transition(':enter', [
         style({transform: 'translateY(-500px)'}),
-        animate('1000ms 1200ms ease-out')
+        animate('1000ms 800ms ease-out')
       ])
     ]),
     trigger('svg-right', [
       state('*', style({transform: 'translateY(0)'})),
       transition(':enter', [
         style({transform: 'translateY(500px)'}),
-        animate('1000ms 1200ms ease-out')
+        animate('1000ms 800ms ease-out')
       ])
     ]),
     trigger('bar', [
       state('*', style({})),
       transition(':enter', [
-        style({transform: 'scaleX(0) rotateY(360deg)', opacity: 0}),
+        style({transform: 'scale(0) translateY(15px)', opacity: 0}),
         animate('1000ms 1000ms ease-out')
       ])
     ])
   ]
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
 
   @Input() cat: string;
   @Input() title: string;
@@ -47,25 +47,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
     this.general = this.generalService.generalData.cats[this.cat];
     // this.easeOutService.easeOut$.subscribe((easeOut) => {
     //   console.log(easeOut);
     // });
     // on scroll
     this.scrollHander();
-    window.onscroll = () => {
+    window.addEventListener('scroll', () => {
       this.scrollHander();
-    };
+    });
   }
 
   scrollHander() {
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
     this.scrollTopSVG = `-${scrollTop / 2}px`;
     this.scrollTopTitle = `-${scrollTop / 3}px`;
-  }
-
-  ngOnDestroy() {
-    window.onscroll = null;
   }
 
   // ngOnDestroy() {

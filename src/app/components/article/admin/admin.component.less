@@ -1,0 +1,99 @@
+@import '../../../global.less';
+.container {
+  position: relative;
+  background-color: transparent !important;
+}
+.header {
+  padding: 100px 0 50px;
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+  &.posted {
+    padding-bottom: 150px;
+  }
+}
+.section {
+  color: #fff;
+  padding: 20px 10%;
+  h1 {
+    font-size: 20px;
+  }
+  form {
+    background: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 5px;
+    margin: 20px 0;
+    color: #000;
+    .image-container {
+      content: '';
+      display: table;
+      clear: both;
+      width: 100%;
+    }
+    .image {
+      width: 33%;
+      float: right;
+      padding: 5px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      border: 1px solid #f2f2f2;
+      img {
+        width: 100%;
+      }
+    }
+    .color {
+      color: #fff;
+    }
+    .full-width {
+      width: 100%;
+    }
+    .normal-width {
+      width: 32%
+    }
+    .two-third-width {
+      width: 66%;
+    }
+    .contain-float {
+      position: relative;
+    }
+    button.float {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .editor {
+      border: 1px solid #ddd;      
+    }
+    .toolbar {
+      background-color: #f2f2f2;
+      padding: 3px;
+      border: 1px solid #ddd;
+      margin-top: 5px;
+      input {
+        width: 50px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) { 
+  .section {
+    padding: 10px 5%;
+  }
+}
+
+@media screen and (max-width: 500px) { 
+  .section {
+    padding: 10px 20px;
+    form {
+      .normal-width {
+        width: 100%;
+      }
+      .image {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BgConfigService } from '../../services/bg-config.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DomSanitizer, SafeValue } from '@angular/platform-browser';
@@ -46,6 +46,7 @@ export class BgComponent implements OnInit {
   showAnim: boolean;
   showMenu: boolean;
   showTrigger: boolean;
+  scrollTrigger: boolean;
 
   constructor(
     private bgConfigService: BgConfigService,
@@ -53,6 +54,7 @@ export class BgComponent implements OnInit {
   ) {
     this.showAnim = false;
     this.showMenu = false;
+    this.scrollTrigger = false;
   }
 
   ngOnInit() {
@@ -71,6 +73,20 @@ export class BgComponent implements OnInit {
         this.showAnim = false;
       }, 1200);
     });
+    // set scroll handler
+    this.scrollHander();
+    window.addEventListener('scroll', () => {
+      this.scrollHander();
+    });
+  }
+
+  scrollHander() {
+    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    if (scrollTop >= 80) {
+      this.scrollTrigger = true;
+    } else {
+      this.scrollTrigger = false;
+    }
   }
 
 }

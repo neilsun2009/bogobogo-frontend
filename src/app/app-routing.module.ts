@@ -11,14 +11,19 @@ import { TranslationComponent } from './components/translation/translation.compo
 import { BytesComponent } from './components/bytes/bytes.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { WordsComponent } from './components/words/words.component';
+import { ArticleComponent } from './components/article/article.component';
+import { ArticleResolver } from './services/article-resolver.service';
+import { AdminArticleComponent } from './components/article/admin/admin.component';
+import { AdminGuard } from './services/admin-guard.service';
+import { GlobalGeneralGuard } from './services/global-general-guard.service';
 
 const appRoutes: Routes = [
   {
     path: '',
     // pathMatch: 'full',
     // component: IndexComponent,
-    canActivate: [GlobalAuthGuard],
-    // canActivateChild: [GlobalAuthGuard],
+    canActivate: [GlobalAuthGuard, GlobalGeneralGuard],
+    canActivateChild: [GlobalAuthGuard],
     children: [
       {
         path: '',
@@ -34,6 +39,10 @@ const appRoutes: Routes = [
         path: 'bio',
         component: BioComponent,
       },
+      // {
+      //   path: 'bio/:tag',
+      //   component: BioComponent,
+      // },
       {
         path: 'coding',
         component: CodingComponent,
@@ -57,6 +66,22 @@ const appRoutes: Routes = [
       {
         path: 'words',
         component: WordsComponent,
+      },
+      {
+        path: 'article/:name',
+        component: ArticleComponent,
+        resolve: {article: ArticleResolver},
+      },
+      {
+        path: 'admin-article/:name',
+        component: AdminArticleComponent,
+        canActivate: [AdminGuard],
+        resolve: {article: ArticleResolver},
+      },
+      {
+        path: 'admin-article',
+        canActivate: [AdminGuard],
+        component: AdminArticleComponent,
       }
     ]
   },

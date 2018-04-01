@@ -15,11 +15,11 @@ export class GeneralService {
     private http: HttpService
   ) { }
 
-  auth(callback, err) {
+  getGeneral(callback, err) {
     this.http.get<IResponse<General>>(this.generalUrl, callback, err);
   }
 
-  authAsync() {
+  getGeneralAsync() {
     return this.http.getAsync<IResponse<General>>(this.generalUrl);
   }
 

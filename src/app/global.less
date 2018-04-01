@@ -14,3 +14,38 @@
   z-index: 0;
   // animation: left-right 1.2s ease-in-out;
 }
+.loading {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  .loader {
+    // font-size: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    position: absolute;
+    animation: load-effect 1s infinite linear;
+  }
+}
+@keyframes load-effect {
+	0% {
+		box-shadow: -3em 2em 0 .5em #FFF, 0 2em 0 0 #FFF, 3em 2em 0 -.5em #FFF;
+	}
+	25% {
+		box-shadow: -3em 2em 0 0 #FFF, 0 2em 0 -.5em #FFF, 3em 2em 0 0 #FFF;
+	}
+	50% {
+		box-shadow: -3em 2em 0 -0.5em #FFF, 0 2em 0 0 #FFF, 3em 2em 0 .5em #FFF;
+	}
+	75% {
+		box-shadow: -3em 2em 0 0 #FFF, 0 2em 0 .5em #FFF, 3em 2em 0 0 #FFF;
+	}
+	100% {
+		box-shadow: -3em 2em 0 .5em #FFF, 0 2em 0 0 #FFF, 3em 2em 0 -.5em #FFF;
+	}
+}

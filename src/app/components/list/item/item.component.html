@@ -1,0 +1,24 @@
+<div class="container" [@loadAnim]="true" [class.right]="isRight" [style.top]="scrollTop + 'px'">
+  <div class="top">
+    <h3 class="time">
+      {{article.addTime | date: 'yyyy-MM-dd'}}
+      <ng-container *ngIf="showCat">·
+        <a [routerLink]="'/' + article.cat" >{{article.cat}}</a>
+      </ng-container>
+    </h3>
+    <br/>
+    <h1><a [routerLink]="'/article/' + article.href">{{article.title}}</a></h1>
+  </div>
+  <a class="image" [routerLink]="'/article/' + article.href">
+    <img [class.ready]="imageReady" [title]="article.title" [src]="asyncImage">
+  </a>
+  <div class="bottom">
+    <h3 class="tags">
+      <ng-container *ngIf="user && user.access==='administrator'">
+        <a [routerLink]="'/admin-article/' + article.href">*U</a> 
+        <a (click)="delete()">*D</a>
+      </ng-container>
+      <a [routerLink]="'/tag/' + tag" *ngFor="let tag of article.tags">#{{tag}} </a>
+    </h3>
+  </div>
+</div>

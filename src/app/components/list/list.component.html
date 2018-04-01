@@ -1,0 +1,34 @@
+<div [@loading]="true" class="loading" *ngIf="showLoading">
+  <div class="loader"></div>
+</div>
+<div class="container">
+  <div class="no-result" *ngIf="noResult">No articles found.</div>
+  <ul>
+    <li *ngFor="let article of articles; let i = index">
+      <app-item [showCat]="showCat" [article]="article" [isRight]="i % 2 === 1"></app-item>
+    </li>
+  </ul>
+  <div class="date-pickers" [class.show]="showDatePicker && showDatePickerByScroll">
+    <div class="picker">
+      <div class="trigger" (click)="setNewDate('year', -1)">&laquo;</div>
+      <div class="circle" id="circle">
+        <div class="selections" [style.top]="yearOffset">
+          <p *ngFor="let year of years">{{year}}</p>
+        </div>
+      </div>
+      <div class="trigger" (click)="setNewDate('year', 1)">&raquo;</div>      
+    </div>
+    <div class="picker">
+      <div class="trigger" (click)="setNewDate('month', -1)">&laquo;</div>
+      <div class="circle">
+        <div class="selections" [style.top]="monthOffset">
+          <p *ngFor="let month of months">{{month}}</p>
+        </div>
+      </div>
+      <div class="trigger" (click)="setNewDate('month', 1)">&raquo;</div>      
+    </div>
+  </div>
+  <div class="add-panel" *ngIf="user && user.access==='administrator'" [class.show]="showDatePickerByScroll">
+    <a routerLink="/admin-article">+</a>
+  </div>
+</div>

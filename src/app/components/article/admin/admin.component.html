@@ -1,0 +1,126 @@
+<div class="container mat-app-background">
+  <div class="header">
+    <h1>{{mode === 'new' ? 'ADD' : 'EDIT'}} ARTICLE</h1>
+  </div>
+  <ng-container *ngIf="!posted">
+    <!-- basic -->
+    <div class="section">
+      <h1>Basic Infos</h1>
+      <form>
+        <!-- title -->
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Title" [(value)]="article.title">
+        </mat-form-field>
+        <!-- show cover image -->
+        <div class="image">
+          <img [src]="article.image">
+        </div>
+        <!-- image -->
+        <mat-form-field id="uploadCoverCtn" class="normal-width contain-float">
+          <input matInput placeholder="Cover Image (1000*625)" [(value)]="article.image">
+          <button mat-raised-button id="uploadCoverBtn" class="float" color="primary">Upload</button>
+        </mat-form-field>
+        <!-- colors -->
+        <mat-form-field class="normal-width color">
+          <input matInput [style.background-color]="article.primaryColor" placeholder="Primary Color" [(value)]="article.primaryColor">
+        </mat-form-field>
+        <mat-form-field class="normal-width color">
+          <input matInput [style.background-color]="article.secondaryColor" placeholder="Secondary Color" [(value)]="article.secondaryColor">
+        </mat-form-field>
+        <button mat-raised-button (click)="tryColor()" color="primary">Try Color</button>      
+        <br/>
+        <!-- cat -->
+        <mat-form-field class="normal-width">
+          <mat-select placeholder="Category" [(value)]="article.cat">
+            <mat-option value="bio">Biography</mat-option>
+            <mat-option value="coding">Coding</mat-option>
+            <mat-option value="design">Design</mat-option>
+            <mat-option value="translation">Translation</mat-option>
+            <mat-option value="blog">Blog</mat-option>
+            <mat-option value="more">More</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- add date -->
+        <mat-form-field class="normal-width">
+          <input matInput [(value)]="article.addTime" [matDatepicker]="picker" placeholder="Add Date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <!-- is public -->
+        <mat-slide-toggle color="primary" [(checked)]="article.isPublic">
+          Public
+        </mat-slide-toggle>
+        <br/>
+        <!-- tags -->
+        <mat-form-field class="normal-width contain-float" *ngFor="let tag of article.tags;let i = index">
+          <input matInput [placeholder]="'Tag' + (i+1)" [(value)]="article.tags[i]">
+          <button class="float" mat-mini-fab color="primary" (click)="article.tags.splice(i, 1)">-</button>        
+        </mat-form-field>
+        <br/>
+        <button mat-mini-fab color="primary" (click)="article.tags.push('')">+</button>
+      </form>
+    </div>
+    <!-- paras -->
+    <div class="section" *ngFor="let para of article.paras;let i = index">
+      <h1>
+        Para {{i+1}}
+        <button class="float" mat-raised-button color="warn" (click)="deletePara(i)">Delete</button>      
+      </h1>
+      <form>
+        <!-- title -->
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Title" [(value)]="para.title">
+        </mat-form-field>
+        <div class="image-container">
+          <!-- show cover image -->
+          <div class="image">
+            <img [src]="para.cover">
+          </div>
+          <!-- image -->
+          <mat-form-field [id]="'uploadPara'+i+'Ctn'" class="two-third-width contain-float">
+            <input matInput placeholder="Cover Image" [(value)]="para.cover">
+            <button mat-raised-button [id]="'uploadPara'+i+'Btn'" class="float" color="primary">Upload</button>
+          </mat-form-field>
+        </div>
+        <!-- toolbar -->
+        <div class="toolbar">
+          <div [id]="'toolbar'+i"></div>
+          <div class="diy w-e-toolbar">
+            <div class="w-e-menu" style="z-index:10001;">
+              <input name="editor-progress-name" [(ngModel)]="progress.name" placeholder="Name">
+            </div>
+            <div class="w-e-menu" style="z-index:10001;">
+              <input name="editor-progress-percentage" [(ngModel)]="progress.percentage" placeholder="Percentage">            
+            </div>
+            <div (click)="editorInsertProgress(i)" class="w-e-menu" style="z-index:10001;">
+              <i>P</i>
+            </div>
+            <div (click)="editorCodeToggle(i)" class="w-e-menu" style="z-index:10001;">
+              <i>C</i>
+            </div>
+          </div>
+        </div>
+        <!-- innerhtml -->
+        <div [id]="'editor'+i" [class.hide]="editorsCodeMode[i]" class="editor">
+        </div>
+        <!-- code mode -->
+        <div class="editor w-e-text-container" [class.hide]="!editorsCodeMode[i]">
+          <div class="w-e-text" [id]="'editorCode'+i" contenteditable="true">{{para.html}}</div>
+        </div>
+      </form>
+    </div>
+    <div class="section">
+      <!-- add para -->    
+      <button mat-mini-fab color="primary" (click)="addPara()">+</button>  
+      <!-- submit -->    
+      <button mat-raised-button color="primary" (click)="submit()">{{mode === 'new' ? 'Post' : 'Update'}}</button>  
+    </div>
+  </ng-container>
+  <ng-container *ngIf="posted">
+    <div class="header posted">
+      <h1>Posted successfully!</h1>
+      <button mat-raised-button color="primary" [routerLink]="'/article/' + article.href">Check it out!</button>  
+      <button mat-raised-button color="primary" (click)="refresh()">Post a new one!</button>  
+    </div>
+  </ng-container>
+</div>

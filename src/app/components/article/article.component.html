@@ -1,0 +1,37 @@
+<div class="header container">
+  <div class="image" [@pic]="true">
+    <img [title]="article.title" (click)="onClickTitle()" [class.ready]="imageReady" [src]="asyncImage">
+  </div>
+  <div class="text" [style.margin-top]="scrollTopText">
+    <h3 class="tag" [@text1]="true">
+      <a [routerLink]="'/' + article.cat">{{article.cat}}</a> ·       
+      <a [routerLink]="'/tag/' + tag" *ngFor="let tag of article.tags">#{{tag}} </a>
+    </h3>
+    <h1 [@text2]="true" [style.color]="article.primaryColor">{{article.title}}</h1>
+    <h3 [@text3]="true">
+      {{article.addTime | date: 'yyyy/MM/dd'}}<br>
+      {{article.views}} Views<br>
+      <ng-container *ngIf="user && user.access==='administrator'">
+        <a [routerLink]="'/admin-article/' + article.href">U</a> ·
+        <a (click)="delete()">D</a>
+      </ng-container>
+    </h3>
+  </div>
+</div>
+<app-para *ngFor="let para of article.paras"
+  [para]="para"
+  [primaryColor]="article.primaryColor"
+  [secondaryColor]="article.secondaryColor">
+</app-para>
+<div class="para-picker" [class.show]="showParaPicker">
+  <div class="picker">
+    <ul [class.hide]="hideParaList">
+      <li *ngFor="let para of paraConfigs;let i = index" (click)="scrollToPara(i)">{{i+1}}. {{para.title}}</li>
+    </ul>
+    <div class="circle" id="circle" (click)="hideParaList=!hideParaList">
+      <div class="selections" [style.top]="paraOffset">
+        <p *ngFor="let para of paraConfigs;let i = index">{{i+1}}</p>
+      </div>
+    </div>
+  </div>
+</div>
