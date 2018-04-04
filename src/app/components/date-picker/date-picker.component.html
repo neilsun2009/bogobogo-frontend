@@ -1,0 +1,20 @@
+<div class="date-pickers" [class.show]="showDatePickerByScroll">
+  <div class="picker">
+    <div class="trigger" (click)="setNewDate('year', -1)">&laquo;</div>
+    <div class="circle" id="circle">
+      <div class="selections" [style.top]="yearOffset">
+        <p *ngFor="let year of years">{{year}}</p>
+      </div>
+    </div>
+    <div class="trigger" (click)="setNewDate('year', 1)">&raquo;</div>      
+  </div>
+  <div class="picker">
+    <div class="trigger" (click)="setNewDate('month', -1)">&laquo;</div>
+    <div class="circle">
+      <div class="selections" [style.top]="monthOffset">
+        <p *ngFor="let month of months">{{month}}</p>
+      </div>
+    </div>
+    <div class="trigger" (click)="setNewDate('month', 1)">&raquo;</div>      
+  </div>
+</div>

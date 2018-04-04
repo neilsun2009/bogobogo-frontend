@@ -18,7 +18,7 @@ export class ArticleService {
     const url = this.http.concatUrl(this.articlesUrl,
       ['cat', 'before', 'tag', 's', 'offset', 'limit'],
       [cat, before, tag, s, offset, limit]);
-    this.http.get<IResponse<Article>>(url, callback, err);
+    this.http.get<IResponse<Article[]>>(url, callback, err);
   }
 
   getOneAsync(href): Observable<IResponse<Article>> {
@@ -27,15 +27,15 @@ export class ArticleService {
   }
 
   delete(params, callback, err) {
-    this.http.delete<IResponse<Comment>>(this.oneUrl, params, callback, err);
+    this.http.delete<IResponse<Article>>(this.oneUrl, params, callback, err);
   }
 
   update(params, callback, err) {
-    this.http.put<IResponse<Comment>>(this.oneUrl, params, callback, err);
+    this.http.put<IResponse<Article>>(this.oneUrl, params, callback, err);
   }
 
   add(params, callback, err) {
-    this.http.post<IResponse<Comment>>(this.oneUrl, params, callback, err);
+    this.http.post<IResponse<Article>>(this.oneUrl, params, callback, err);
   }
 
 }

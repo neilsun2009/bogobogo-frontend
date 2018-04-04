@@ -73,7 +73,7 @@ export class HttpService {
         url += '?';
     }
     for (let i = 0, len = keys.length; i < len; ++i) {
-        url += values[i] && values[i].length ? `&${keys[i]}=${values[i]}` : '';
+        url += values[i] && values[i].toString().length ? `&${keys[i]}=${values[i]}` : '';
     }
     return url;
   }

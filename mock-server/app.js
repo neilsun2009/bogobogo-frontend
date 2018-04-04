@@ -102,7 +102,7 @@ app.get('/api/article', (req, res) => {
   res.json(Mock.mock({
     result: true,
     data:{
-      id: '@id()',
+      _id: '@id()',
       href: '@word()',
       title: '@title()',
       image: "@image('800x500', '@color')",
@@ -116,7 +116,7 @@ app.get('/api/article', (req, res) => {
       secondaryColor: '@color',
       'paras|3-5': [{
         title: '@word()',
-        cover: "@image('', '@color')",
+        cover: Math.floor(Math.random()*2) ? "@image('', '@color')" : '',
         html: '@paragraph()'
       }]
     }
@@ -145,6 +145,22 @@ app.get('/api/qiniu_token', (req, res) => {
   res.json({
     uptoken: uploadToken
   });
+});
+app.get('/api/words', (req, res) => {
+  const count = Math.floor(Math.random() *10) + 4;
+  res.json(Mock.mock({
+    result: true,
+    'count|4-30': 100,
+    // 'count': 0,
+    ['data|' + 20]: [
+      {
+        _id: '@id()',
+        text: '@paragraph(1, 4)',
+        image: "@image('', '@color')",
+        addTime: '@datetime',
+      }
+    ]
+  }))
 });
 // app.get('/api/palette', (req, res) => {
 //   console.log(req.query);

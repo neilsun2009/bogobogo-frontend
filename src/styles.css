@@ -30,13 +30,13 @@ html, body {
   font-family: 'Futura', Helvetica, Arial, 'Microsoft Yahei', '微软雅黑';
   overflow-x: hidden;
 }
-input, button, option,
+input, button, option, pre,
 .mat-button, .mat-fab, .mat-flat-button, .mat-icon-button, .mat-mini-fab,
 .mat-raised-button, .mat-stroked-button, .mat-form-field,
 .mat-slide-toggle-content, .mat-select, .mat-option, .mat-dialog-title {
   font-family: 'Futura', Helvetica, Arial, 'Microsoft Yahei', '微软雅黑';
 }
-pre, code {
+code {
   font-family: 'Lucida Console', 'Courier New',  'monospace';
 }
 h1, h2, h3, h4, h5, h6 {

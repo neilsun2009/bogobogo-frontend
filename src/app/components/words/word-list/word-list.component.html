@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="item" [style.top]="tops[i] + 'px'" [id]="'word' + i" *ngFor="let word of words;let i = index">
+    <div class="main" [class.hasImage]="word.image">
+      <div class="text">
+        <pre>{{word.text}}</pre>
+        <p class="time">
+          {{word.addTime | date:'medium'}}
+        </p>
+      </div>
+      <div class="image">
+        <img [src]="word.image">
+      </div>
+    </div>
+  </div>
+</div>
+<app-date-picker (onChangeDate)="onChangeDate($event)"></app-date-picker>
