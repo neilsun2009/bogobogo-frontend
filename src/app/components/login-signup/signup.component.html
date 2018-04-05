@@ -1,0 +1,25 @@
+<div class="container mat-app-background">
+  <div class="header">
+    <h1>SIGNUP</h1>
+    <h3 *ngIf="hasSignedUp">Signup succeeded!</h3>
+    <p *ngIf="hasSignedUp"><a routerLink="/login">Click to login!</a></p>
+  </div>
+  <form *ngIf="!hasSignedUp" (ngSubmit)="signup()" name="signupForm" #signupForm="ngForm">
+    <!-- username -->
+    <mat-form-field class="full-width">
+      <input name="username" required matInput placeholder="Username" [(ngModel)]="signupParam.username">
+    </mat-form-field>
+    <!-- password -->
+    <mat-form-field class="full-width">
+      <input type="password" name="password" required matInput placeholder="Password" [(ngModel)]="signupParam.password">
+    </mat-form-field>
+    <!-- password -->
+    <mat-form-field class="full-width">
+      <input type="password" name="repeat-password" required matInput placeholder="Repeat Password" [(ngModel)]="passwordRepeat">
+    </mat-form-field>
+    <mat-dialog-actions>
+      <button type="submit" mat-raised-button color="primary" 
+      [disabled]="!signupForm.form.valid">Signup</button>    
+    </mat-dialog-actions>
+  </form>
+</div>

@@ -26,6 +26,7 @@ export class ListComponent implements OnInit {
   private before: string;
   // private canScrollLoad: boolean;
   showLoading: boolean;
+  showAddPanel: boolean;
   user: User;
 
   constructor(
@@ -42,6 +43,7 @@ export class ListComponent implements OnInit {
     this.articles = [];
     // this.canScrollLoad = true;
     this.showLoading = true;
+    this.showAddPanel = false;
   }
 
   ngOnInit() {
@@ -62,6 +64,13 @@ export class ListComponent implements OnInit {
       // this.loadLock = true;
       // console.log(true);
       this.getArticles();
+    }
+    // show add panel
+    if (clientHeight / 2 < screenTop) {
+      this.showAddPanel = true;
+      // console.log(this.showDatePicker);
+    } else {
+      this.showAddPanel = false;
     }
   }
 

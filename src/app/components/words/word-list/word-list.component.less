@@ -84,6 +84,33 @@
     }
   }
 }
+.add-panel {
+  position: fixed;
+  top: -100px;
+  right: 20px;
+  font-family: Rockwell;
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+  &.show {
+    top: 20px;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+  a {
+    height: 40px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;  
+    text-align: center;              
+    border-radius: 50%;
+    background: #fff;
+    color: #000;
+  }
+}
 
 
 @media screen and (max-width: 1000px) {

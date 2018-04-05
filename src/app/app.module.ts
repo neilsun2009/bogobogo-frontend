@@ -41,7 +41,12 @@ import { ArticleComponent } from './components/article/article.component';
 import { AdminArticleComponent } from './components/article/admin/admin.component';
 import { DeleteParaComponent } from './components/article/admin/delete-para/delete-para.component';
 import { DeleteArticleComponent } from './components/article/admin/delete-article/delete-article.component';
+import { DeleteWordComponent } from './components/words/delete-word/delete-word.component';
+import { UpdateGeneralComponent } from './components/header/update-general/update-general.component';
+import { AddWordComponent } from './components/words/add-word/add-word.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { LoginComponent } from './components/login-signup/login.component';
+import { SignupComponent } from './components/login-signup/signup.component';
 
 import {MatButtonModule, MatCheckboxModule, MatMenuModule,
   MatInputModule, MatFormFieldModule, MatSelectModule,
@@ -70,12 +75,20 @@ import {MatButtonModule, MatCheckboxModule, MatMenuModule,
     ParaComponent,
     DeleteParaComponent,
     DeleteArticleComponent,
+    DeleteWordComponent,
+    AddWordComponent,
     WordListComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    UpdateGeneralComponent,
+    LoginComponent,
+    SignupComponent
   ],
   entryComponents: [
     DeleteParaComponent,
-    DeleteArticleComponent
+    DeleteArticleComponent,
+    DeleteWordComponent,
+    AddWordComponent,
+    UpdateGeneralComponent
   ],
   imports: [
     BrowserModule,

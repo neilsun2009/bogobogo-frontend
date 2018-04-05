@@ -5,12 +5,18 @@
         <pre>{{word.text}}</pre>
         <p class="time">
           {{word.addTime | date:'medium'}}
+          <ng-container *ngIf="user && user.access==='administrator'">
+            * <span (click)="delete(i)">D</span>
+          </ng-container>
         </p>
       </div>
       <div class="image">
-        <img [src]="word.image">
+        <img (click)="openImage(word.image)" [src]="word.image">
       </div>
     </div>
   </div>
 </div>
 <app-date-picker (onChangeDate)="onChangeDate($event)"></app-date-picker>
+<div class="add-panel" *ngIf="user && user.access==='administrator'" [class.show]="showAddPanel">
+  <a (click)="add()">+</a>
+</div>

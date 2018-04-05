@@ -18,7 +18,6 @@ export class WordService {
     const url = this.http.concatUrl(this.wordsUrl,
       ['before', 's', 'offset', 'limit'],
       [before, s, offset, limit]);
-    console.log(url);
     this.http.get<IResponse<Word[]>>(url, callback, err);
   }
 

@@ -18,12 +18,12 @@ export class AuthService {
     private http: HttpService
   ) { }
 
-  login(username, password, callback, err) {
-    this.http.put<IResponse<User>>(this.authUrl, {username, password}, callback, err);
+  login(param, callback, err) {
+    this.http.put<IResponse<User>>(this.authUrl, param, callback, err);
   }
 
-  signup(username, password, callback, err) {
-    this.http.post<IResponse<User>>(this.authUrl, {username, password}, callback, err);
+  signup(param, callback, err) {
+    this.http.post<IResponse<User>>(this.authUrl, param, callback, err);
   }
 
   auth(callback, err) {

@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Add Wørd!</h2>
+<form (ngSubmit)="add()" name="addForm" #addForm="ngForm">
+  <!-- text -->
+  <mat-form-field class="full-width">
+    <textarea name="text" required matInput placeholder="I wanna say..." [(ngModel)]="addParam.text"></textarea>
+  </mat-form-field>
+  <!-- image -->
+  <mat-form-field id="uploadCtn"  class="full-width contain-float" id="uploadCtn">
+    <input name="image" matInput placeholder="Image" [(ngModel)]="addParam.image">
+    <button mat-raised-button id="uploadBtn" class="float" color="primary">Upload</button>      
+  </mat-form-field>
+  <!-- show cover image -->
+  <div class="image">
+    <img [src]="addParam.image">
+  </div>
+  <br/>
+  <mat-dialog-actions>
+    <button type="submit" mat-raised-button color="primary" 
+    [disabled]="!addForm.form.valid">Post</button>    
+    <button mat-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>

@@ -16,6 +16,8 @@ import { ArticleResolver } from './services/article-resolver.service';
 import { AdminArticleComponent } from './components/article/admin/admin.component';
 import { AdminGuard } from './services/admin-guard.service';
 import { GlobalGeneralGuard } from './services/global-general-guard.service';
+import { LoginComponent } from './components/login-signup/login.component';
+import { SignupComponent } from './components/login-signup/signup.component';
 
 const appRoutes: Routes = [
   {
@@ -82,6 +84,15 @@ const appRoutes: Routes = [
         path: 'admin-article',
         canActivate: [AdminGuard],
         component: AdminArticleComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      }
+      },
+      {
+        path: 'signup',
+        component: SignupComponent
       }
     ]
   },

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="element" id="element">
+  <div class="element" id="element" (click)="updateGeneral()">
     <!-- bio -->
     <svg *ngIf="cat === 'bio'" [style.top]="scrollTopSVG" viewBox="0 0 724 256" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <g [@svg-left]="true" [style.fill]="general.secondaryColor">

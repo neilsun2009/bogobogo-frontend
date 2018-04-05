@@ -2,6 +2,11 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { GeneralService } from '../../services/api/general.service';
 import { EaseOutService } from '../../services/ease-out.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/api/auth.service';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { UpdateGeneralComponent } from './update-general/update-general.component';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -38,15 +43,20 @@ export class HeaderComponent implements OnInit {
   scrollTopSVG: string;
   scrollTopTitle: string;
   // show: boolean;
+  user: User;
 
   constructor(
     private generalService: GeneralService,
-    private easeOutService: EaseOutService
+    private easeOutService: EaseOutService,
+    private authService: AuthService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
   ) {
     // this.show = true;
   }
 
   ngOnInit() {
+    this.user = this.authService.user;
     document.body.scrollTop = 0;
     this.general = this.generalService.generalData.cats[this.cat];
     // this.easeOutService.easeOut$.subscribe((easeOut) => {
@@ -65,17 +75,19 @@ export class HeaderComponent implements OnInit {
     this.scrollTopTitle = `-${scrollTop / 3}px`;
   }
 
-  // ngOnDestroy() {
-    // setTimeout(() => {
-    //   this.show = false;
-    // }, 0);
-    // document.getElementById('element').style.opacity = '0.1';
-    // const now = Date.now();
-    // while (1) {
-    //   if (Date.now() - now >= 500) {
-    //     return;
-    //   }
-    // }
-  // }
+  updateGeneral() {
+    if (!this.user || this.user.access !== 'administrator') {
+      return;
+    }
+    const dialogRef = this.dialog.open(UpdateGeneralComponent, {
+      width: '400px',
+      data: this.cat
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        location.reload();
+      }
+    });
+  }
 
 }

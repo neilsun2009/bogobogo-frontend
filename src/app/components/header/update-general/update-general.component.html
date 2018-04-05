@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Update {{updateParam.cat}}!</h2>
+<form (ngSubmit)="update()" name="updateForm" #updateForm="ngForm">
+  <!-- primary color -->
+  <mat-form-field class="full-width">
+    <input [style.background-color]="updateParam.primaryColor" name="primary-color" required matInput placeholder="Primary Color" [(ngModel)]="updateParam.primaryColor">
+  </mat-form-field>
+  <!-- secondary color -->
+  <mat-form-field class="full-width">
+    <input [style.background-color]="updateParam.secondaryColor" name="secondary-color" required matInput placeholder="Secondary Color" [(ngModel)]="updateParam.secondaryColor">
+  </mat-form-field>
+  <!-- background -->
+  <mat-form-field  class="full-width">
+    <input name="layer-bg" matInput placeholder="Background" [(ngModel)]="updateParam.layerBg">
+  </mat-form-field>
+  <!-- title -->
+  <mat-form-field  class="full-width">
+    <input name="title" matInput placeholder="Title" [(ngModel)]="updateParam.title">
+  </mat-form-field>
+  <br/>
+  <button type="button" mat-raised-button (click)="tryOut()" color="primary">Try Out!</button>        
+  <mat-dialog-actions>
+    <button type="submit" mat-raised-button color="primary" 
+    [disabled]="!updateForm.form.valid">Update</button>    
+    <button mat-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>

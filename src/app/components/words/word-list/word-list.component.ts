@@ -3,6 +3,9 @@ import { WordService } from '../../../services/api/word.service';
 import { Word} from '../../../models/word';
 import { User } from '../../../models/user';
 import { AuthService } from '../../../services/api/auth.service';
+import { DeleteWordComponent } from '../delete-word/delete-word.component';
+import { AddWordComponent } from '../add-word/add-word.component';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-word-list',
@@ -22,10 +25,13 @@ export class WordListComponent implements OnInit, OnDestroy {
   private limit: number;
   private before: string;
   private scrollNum: number;
+  showAddPanel: boolean;
 
   constructor(
     private wordService: WordService,
     private authService: AuthService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
   ) {
     this.showLoading = true;
     this.noResult = false;
@@ -37,6 +43,7 @@ export class WordListComponent implements OnInit, OnDestroy {
     this.words = [];
     this.tops = [];
     this.scrollNum = 0;
+    this.showAddPanel = false;
   }
 
   ngOnInit() {
@@ -128,6 +135,13 @@ export class WordListComponent implements OnInit, OnDestroy {
       // console.log(true);
       this.getWords();
     }
+    // show add panel
+    if (clientHeight / 2 < screenTop) {
+      this.showAddPanel = true;
+      // console.log(this.showDatePicker);
+    } else {
+      this.showAddPanel = false;
+    }
   }
 
   onChangeDate(e) {
@@ -136,5 +150,49 @@ export class WordListComponent implements OnInit, OnDestroy {
     this.before = e;
     this.getWords();
     // console.log(e);
+  }
+
+  delete(id) {
+    // console.log(id);
+    if (!this.user || this.user.access !== 'administrator') {
+      return;
+    }
+    const dialogRef = this.dialog.open(DeleteWordComponent, {
+      data: this.words[id],
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBar.open('Word deleted!', 'Meh', {
+          duration: 1500
+        });
+        this.words = [];
+        this.offset = 0;
+        this.getWords();
+      }
+    });
+  }
+
+  add() {
+    if (!this.user || this.user.access !== 'administrator') {
+      return;
+    }
+    const dialogRef = this.dialog.open(AddWordComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBar.open('Word added!', 'Hoo-Ray!', {
+          duration: 1500
+        });
+        this.words = [];
+        this.offset = 0;
+        this.getWords();
+      }
+    });
+  }
+
+  openImage(url) {
+    window.open(url);
   }
 }

@@ -23,4 +23,8 @@ export class GeneralService {
     return this.http.getAsync<IResponse<General>>(this.generalUrl);
   }
 
+  update(params, callback, err) {
+    this.http.put<IResponse<General>>(this.generalUrl, params, callback, err);
+  }
+
 }
