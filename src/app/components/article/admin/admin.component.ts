@@ -8,6 +8,7 @@ import * as Color from 'color.js';
 import * as Editor from 'wangeditor';
 import { DeleteParaComponent } from './delete-para/delete-para.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { TitleService } from '../../../services/title.service';
 // import * as splashy from 'splashy';
 @Component({
   selector: 'app-admin-article',
@@ -26,6 +27,7 @@ export class AdminArticleComponent implements OnInit {
     percentage: number;
   };
   posted: boolean;
+  tags: string[];
 
   constructor(
     private bgConfigService: BgConfigService,
@@ -34,6 +36,7 @@ export class AdminArticleComponent implements OnInit {
     private qiniuService: QiniuService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
+    private titleService: TitleService,
     private articleService: ArticleService
   ) {
     this.editors = [];
@@ -43,6 +46,7 @@ export class AdminArticleComponent implements OnInit {
       percentage: 80
     };
     this.posted = false;
+    this.tags = [];
   }
 
   ngOnInit() {
@@ -54,6 +58,7 @@ export class AdminArticleComponent implements OnInit {
       showMenu: false,
       showTrigger: true
     });
+    this.titleService.setTitle('Article Admin');
     this.calDateString();
     this.route.data.subscribe((data: {article: Article}) => {
       // console.log(data);
@@ -78,6 +83,7 @@ export class AdminArticleComponent implements OnInit {
           text: ''
         }]
       };
+      this.tags = this.article.tags;
       setTimeout(() => {
         // cover image
         this.initQiniu(-1);
@@ -98,26 +104,19 @@ export class AdminArticleComponent implements OnInit {
       this.article.paras[i].html = this.editors[i].txt.html();
       this.article.paras[i].text = this.editors[i].txt.text();
     }
+    console.log(this.article);
     // post or update
     if (this.mode === 'new') {
       this.articleService.add(this.article,
         (data) => {
-          if (data.result) {
-            this.posted = true;
-            this.article = data.data;
-          } else {
-            this.handleError(data);
-          }
+          this.posted = true;
+          this.article = data;
         }, this.handleError);
     } else {
       this.articleService.update(this.article,
         (data) => {
-          if (data.result) {
-            this.posted = true;
-            this.article = data.data;
-          } else {
-            this.handleError(data);
-          }
+          this.posted = true;
+          this.article = data;
         }, this.handleError);
     }
   }
@@ -314,6 +313,15 @@ export class AdminArticleComponent implements OnInit {
 
   refresh() {
     window.location.href = '/admin-article';
+  }
+
+  changeTag(id, value) {
+    // console.log(document.getElementById(`tag${id}`).focus);
+    // console.log(id, value);
+    this.article.tags[id] = value;
+    setTimeout(() => {
+      document.getElementById(`tag${id}`).focus();
+    }, 0);
   }
 
 }

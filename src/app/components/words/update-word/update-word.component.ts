@@ -1,47 +1,45 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Word } from '../../../models/word';
 import { WordService } from '../../../services/api/word.service';
 import { QiniuService } from '../../../services/api/qiniu.service';
 
 @Component({
-  selector: 'app-add-word',
-  templateUrl: './add-word.component.html',
-  styleUrls: ['./add-word.component.less']
+  selector: 'app-update-word',
+  templateUrl: './update-word.component.html',
+  styleUrls: ['./update-word.component.less']
 })
-export class AddWordComponent implements OnInit {
+export class UpdateWordComponent implements OnInit {
 
-  addParam: {
+  updateParam: {
+    _id: string;
     text: string;
     image: string;
     isPublic: boolean;
   };
 
   constructor(
-    public dialogRef: MatDialogRef<AddWordComponent>,
+    public dialogRef: MatDialogRef<UpdateWordComponent>,
     private wordService: WordService,
-    private qiniuService: QiniuService
+    private qiniuService: QiniuService,
+    @Inject(MAT_DIALOG_DATA) public data: Word
   ) {
-    this.addParam = {
-      text: '',
-      image: '',
-      isPublic: true
-    };
   }
 
   ngOnInit() {
+    this.updateParam = this.data;
     this.qiniuService.upload(window['Qiniu'], 'uploadBtn', 'uploadCtn', 'uploadCtn', 'bogobogo/words/',
     (up, file, info) => {
       const res = JSON.parse(info.response);
-      this.addParam.image = `${this.qiniuService.domainUrl}${res.key}`;
+      this.updateParam.image = `${this.qiniuService.domainUrl}${res.key}`;
     }, (up, err, errTip) => {
       alert('err');
       console.log(errTip);
     });
   }
 
-  add() {
-    this.wordService.add(this.addParam,
+  update() {
+    this.wordService.update(this.updateParam,
     (data) => {
       this.dialogRef.close(data);
     }, this.handleError);

@@ -6,6 +6,7 @@ import { User } from '../../models/user';
 import { AuthService } from '../../services/api/auth.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { UpdateGeneralComponent } from './update-general/update-general.component';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-header',
@@ -50,12 +51,25 @@ export class HeaderComponent implements OnInit {
     private easeOutService: EaseOutService,
     private authService: AuthService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private titleService: TitleService
   ) {
     // this.show = true;
   }
 
   ngOnInit() {
+    let titleWord = this.cat;
+    switch (this.cat) {
+      case 'bio': titleWord = 'Biography'; break;
+      case 'coding': titleWord = 'Coding'; break;
+      case 'design': titleWord = 'Design'; break;
+      case 'translation': titleWord = 'Translation'; break;
+      case 'words': titleWord = 'Wørds'; break;
+      case 'bytes': titleWord = 'ßytes'; break;
+      case 'blog': titleWord = 'Blog'; break;
+      case 'more': titleWord = 'More'; break;
+    }
+    this.titleService.setTitle(titleWord);
     this.user = this.authService.user;
     document.body.scrollTop = 0;
     this.general = this.generalService.generalData.cats[this.cat];

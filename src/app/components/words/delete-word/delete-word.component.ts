@@ -17,13 +17,9 @@ export class DeleteWordComponent {
   ) { }
 
   delete() {
-    this.wordService.delete({id: this.data._id},
+    this.wordService.delete({_id: this.data._id},
       (data) => {
-        if (data.result) {
-          this.dialogRef.close(true);
-        } else {
-          this.handleError(data);
-        }
+        this.dialogRef.close(true);
       }, this.handleError);
   }
 

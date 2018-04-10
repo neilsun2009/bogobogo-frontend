@@ -1,27 +1,27 @@
-<h2 mat-dialog-title>Add Wørd!</h2>
-<form (ngSubmit)="add()" name="addForm" #addForm="ngForm">
+<h2 mat-dialog-title>Update Wørd!</h2>
+<form (ngSubmit)="update()" name="updateForm" #updateForm="ngForm">
   <!-- text -->
   <mat-form-field class="full-width">
-    <textarea name="text" required matInput placeholder="I wanna say..." [(ngModel)]="addParam.text"></textarea>
+    <textarea name="text" required matInput placeholder="I wanna say..." [(ngModel)]="updateParam.text"></textarea>
   </mat-form-field>
   <!-- image -->
   <mat-form-field id="uploadCtn"  class="full-width contain-float" id="uploadCtn">
-    <input name="image" matInput placeholder="Image" [(ngModel)]="addParam.image">
+    <input name="image" matInput placeholder="Image" [(ngModel)]="updateParam.image">
     <button mat-raised-button id="uploadBtn" class="float" color="primary">Upload</button>      
   </mat-form-field>
   <!-- show cover image -->
   <div class="image">
-    <img [src]="addParam.image">
+    <img [src]="updateParam.image">
   </div>
   <br/>
   <!-- is public -->
-  <mat-slide-toggle name="is-public" color="primary" [(ngModel)]="addParam.isPublic">
+  <mat-slide-toggle name="is-public" color="primary" [(ngModel)]="updateParam.isPublic">
     Public
   </mat-slide-toggle>
   <br/>
   <mat-dialog-actions>
     <button type="submit" mat-raised-button color="primary" 
-    [disabled]="!addForm.form.valid">Post</button>    
+    [disabled]="!updateForm.form.valid">Post</button>    
     <button mat-button mat-dialog-close>Cancel</button>
   </mat-dialog-actions>
 </form>

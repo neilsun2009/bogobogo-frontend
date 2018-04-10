@@ -12,6 +12,7 @@ import { GlobalAuthGuard } from './services/global-auth-guard.service';
 import { GlobalGeneralGuard } from './services/global-general-guard.service';
 import { HttpService } from './services/http.service';
 import { ArticleResolver } from './services/article-resolver.service';
+import { TitleService } from './services/title.service';
 import { GeneralService } from './services/api/general.service';
 import { ArticleService } from './services/api/article.service';
 import { AuthService } from './services/api/auth.service';
@@ -44,9 +45,12 @@ import { DeleteArticleComponent } from './components/article/admin/delete-articl
 import { DeleteWordComponent } from './components/words/delete-word/delete-word.component';
 import { UpdateGeneralComponent } from './components/header/update-general/update-general.component';
 import { AddWordComponent } from './components/words/add-word/add-word.component';
+import { UpdateWordComponent } from './components/words/update-word/update-word.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { LoginComponent } from './components/login-signup/login.component';
 import { SignupComponent } from './components/login-signup/signup.component';
+import { LogoutComponent } from './components/login-signup/logout.component';
+import { FourOFourComponent } from './components/404/404.component';
 
 import {MatButtonModule, MatCheckboxModule, MatMenuModule,
   MatInputModule, MatFormFieldModule, MatSelectModule,
@@ -80,15 +84,19 @@ import {MatButtonModule, MatCheckboxModule, MatMenuModule,
     WordListComponent,
     DatePickerComponent,
     UpdateGeneralComponent,
+    UpdateWordComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LogoutComponent,
+    FourOFourComponent
   ],
   entryComponents: [
     DeleteParaComponent,
     DeleteArticleComponent,
     DeleteWordComponent,
     AddWordComponent,
-    UpdateGeneralComponent
+    UpdateGeneralComponent,
+    UpdateWordComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +129,8 @@ import {MatButtonModule, MatCheckboxModule, MatMenuModule,
     QiniuService,
     ArticleResolver,
     AdminGuard,
-    WordService
+    WordService,
+    TitleService
   ],
   bootstrap: [AppComponent]
 })

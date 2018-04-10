@@ -9,7 +9,7 @@
       <form>
         <!-- title -->
         <mat-form-field class="full-width">
-          <input matInput placeholder="Title" [(value)]="article.title">
+          <input name="title" matInput placeholder="Title" [(ngModel)]="article.title">
         </mat-form-field>
         <!-- show cover image -->
         <div class="image">
@@ -17,15 +17,15 @@
         </div>
         <!-- image -->
         <mat-form-field id="uploadCoverCtn" class="normal-width contain-float">
-          <input matInput placeholder="Cover Image (1000*625)" [(value)]="article.image">
+          <input name="image" matInput placeholder="Cover Image (1000*625)" [(ngModel)]="article.image">
           <button mat-raised-button id="uploadCoverBtn" class="float" color="primary">Upload</button>
         </mat-form-field>
         <!-- colors -->
         <mat-form-field class="normal-width color">
-          <input matInput [style.background-color]="article.primaryColor" placeholder="Primary Color" [(value)]="article.primaryColor">
+          <input name="primary-color" matInput [style.background-color]="article.primaryColor" placeholder="Primary Color" [(ngModel)]="article.primaryColor">
         </mat-form-field>
         <mat-form-field class="normal-width color">
-          <input matInput [style.background-color]="article.secondaryColor" placeholder="Secondary Color" [(value)]="article.secondaryColor">
+          <input name="secondary-color" matInput [style.background-color]="article.secondaryColor" placeholder="Secondary Color" [(ngModel)]="article.secondaryColor">
         </mat-form-field>
         <button mat-raised-button (click)="tryColor()" color="primary">Try Color</button>      
         <br/>
@@ -42,18 +42,20 @@
         </mat-form-field>
         <!-- add date -->
         <mat-form-field class="normal-width">
-          <input matInput [(value)]="article.addTime" [matDatepicker]="picker" placeholder="Add Date">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <!-- <input name="add-date" matInput [(ngModel)]="article.addTime" [matDatepicker]="picker" placeholder="Add Date"> -->
+          <input type="date" name="add-date" matInput [(ngModel)]="article.addTime" placeholder="Add Date">
+          <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker> -->
         </mat-form-field>
         <!-- is public -->
-        <mat-slide-toggle color="primary" [(checked)]="article.isPublic">
+        <mat-slide-toggle name="is-public" color="primary" [(ngModel)]="article.isPublic">
           Public
         </mat-slide-toggle>
         <br/>
         <!-- tags -->
         <mat-form-field class="normal-width contain-float" *ngFor="let tag of article.tags;let i = index">
-          <input matInput [placeholder]="'Tag' + (i+1)" [(value)]="article.tags[i]">
+          <input [id]="'tag'+i" [name]="'tag'+i" matInput [placeholder]="'Tag' + (i+1)"
+            [ngModel]="article.tags[i]" (ngModelChange)="changeTag(i, $event)">
           <button class="float" mat-mini-fab color="primary" (click)="article.tags.splice(i, 1)">-</button>        
         </mat-form-field>
         <br/>
@@ -69,7 +71,7 @@
       <form>
         <!-- title -->
         <mat-form-field class="full-width">
-          <input matInput placeholder="Title" [(value)]="para.title">
+          <input matInput name="title" placeholder="Title" [(ngModel)]="para.title">
         </mat-form-field>
         <div class="image-container">
           <!-- show cover image -->
@@ -78,7 +80,7 @@
           </div>
           <!-- image -->
           <mat-form-field [id]="'uploadPara'+i+'Ctn'" class="two-third-width contain-float">
-            <input matInput placeholder="Cover Image" [(value)]="para.cover">
+            <input name="cover" matInput placeholder="Cover Image" [(ngModel)]="para.cover">
             <button mat-raised-button [id]="'uploadPara'+i+'Btn'" class="float" color="primary">Upload</button>
           </mat-form-field>
         </div>

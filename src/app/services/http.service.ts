@@ -10,7 +10,8 @@ export interface IResponse<T> {
     message: string;
     data?: T;
     result: boolean;
-    count?: number;
+    // count?: number;
+    code: number;
 }
 
 @Injectable()
@@ -23,7 +24,11 @@ export class HttpService {
   get<T>(url: string, callback: ({}) => void, errCallback: ({}) => void) {
     return this.http.get<T>(url).subscribe(
         (data) => {
-            callback(data);
+            if (data['result']) {
+                callback(data['data']);
+            } else {
+                errCallback(data);
+            }
         },
         (err) => {
             errCallback(err);
@@ -38,7 +43,11 @@ export class HttpService {
   post<T>(url: string, body: {}, callback: ({}) => void, errCallback: ({}) => void) {
     return this.http.post<T>(url, body).subscribe(
         (data) => {
-            callback(data);
+            if (data['result']) {
+                callback(data['data']);
+            } else {
+                errCallback(data);
+            }
         },
         (err) => {
             errCallback(err);
@@ -49,7 +58,11 @@ export class HttpService {
   put<T>(url: string, body: {}, callback: ({}) => void, errCallback: ({}) => void) {
     return this.http.put<T>(url, body).subscribe(
         (data) => {
-            callback(data);
+            if (data['result']) {
+                callback(data['data']);
+            } else {
+                errCallback(data);
+            }
         },
         (err) => {
             errCallback(err);

@@ -19,11 +19,11 @@ export class AuthService {
   ) { }
 
   login(param, callback, err) {
-    this.http.put<IResponse<User>>(this.authUrl, param, callback, err);
+    this.http.post<IResponse<User>>(this.authUrl, param, callback, err);
   }
 
   signup(param, callback, err) {
-    this.http.post<IResponse<User>>(this.authUrl, param, callback, err);
+    this.http.post<IResponse<User>>(this.userUrl, param, callback, err);
   }
 
   auth(callback, err) {
@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   logout(callback, err) {
-    this.http.delete<IResponse<null>>(this.authUrl, null, callback, err);
+    this.http.delete<IResponse<null>>(this.authUrl, {}, callback, err);
   }
 
 }

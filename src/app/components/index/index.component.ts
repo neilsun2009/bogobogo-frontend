@@ -5,6 +5,7 @@ import { User } from '../../models/user';
 import { AuthService } from '../../services/api/auth.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { UpdateGeneralComponent } from '../header/update-general/update-general.component';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-index',
@@ -21,12 +22,14 @@ export class IndexComponent implements OnInit {
     private generalService: GeneralService,
     private authService: AuthService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private titleService: TitleService
   ) {
     this.catConfig = generalService.generalData.cats.index;
   }
 
   ngOnInit() {
+    this.titleService.setTitle('');
     this.user = this.authService.user;
     this.bgConfigService.setConfig({
       primaryColor: this.catConfig.primaryColor,

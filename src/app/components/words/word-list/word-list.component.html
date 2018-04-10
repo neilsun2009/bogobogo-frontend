@@ -1,12 +1,19 @@
 <div class="container">
+  <div class="no-result" *ngIf="noResult">No words found.</div>
   <div class="item" [style.top]="tops[i] + 'px'" [id]="'word' + i" *ngFor="let word of words;let i = index">
     <div class="main" [class.hasImage]="word.image">
       <div class="text">
         <pre>{{word.text}}</pre>
         <p class="time">
-          {{word.addTime | date:'medium'}}
+          {{word.addTime | date:'MMM dd, y, HH:mm:ss '}}
           <ng-container *ngIf="user && user.access==='administrator'">
             * <span (click)="delete(i)">D</span>
+          </ng-container>
+          <ng-container *ngIf="user && user.access==='administrator'">
+            * <span (click)="update(i)">U</span>
+          </ng-container>
+          <ng-container *ngIf="user && user.access==='administrator' && word.isPublic === false">
+            * <span class="red">P</span>
           </ng-container>
         </p>
       </div>

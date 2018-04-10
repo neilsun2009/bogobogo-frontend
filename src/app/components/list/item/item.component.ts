@@ -60,10 +60,10 @@ export class ItemComponent implements OnInit {
   getImage(url) {
     const image = new Image();
     this.imageReady = false;
-    this.asyncImage = 'https://dummyimage.com/8x5/f279a9';
-    image.src = url;
+    this.asyncImage = `${url}?imageView2/0/w/40/q/10|imageslim`;
+    image.src = `${url}?imageView2/0/w/400/q/90|imageslim`;
     image.onload = () => {
-      this.asyncImage = url;
+      this.asyncImage = image.src;
       this.imageReady = true;
     };
   }

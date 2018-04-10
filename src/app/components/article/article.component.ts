@@ -8,6 +8,7 @@ import { User } from '../../models/user';
 import { AuthService } from '../../services/api/auth.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { DeleteArticleComponent } from '../article/admin/delete-article/delete-article.component';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-article',
@@ -71,7 +72,8 @@ export class ArticleComponent implements OnInit {
     private authService: AuthService,
     private renderer: Renderer2,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private titleService: TitleService
   ) {
     this.resizeNumber = 0;
     this.paraConfigs = [];
@@ -86,88 +88,89 @@ export class ArticleComponent implements OnInit {
     this.route.data.subscribe((data: {article: Article}) => {
       const paras = data.article.paras;
       let isLeft = true;
+      this.titleService.setTitle(data.article.title);
       // dev text, additional para
-      paras.unshift({
-        title: 'HTML',
-        text: 'html',
-        cover: 'http://olxpdoc6c.bkt.clouddn.com/footprint/team/changchunyatai-star.png',
-        html: `<p>This is <a href="http://bogobogo.cn">Bogo's</a> personal website.<br/>
-        Lorem <b>ipsum</b> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-        nibh euismod <i>tincidunt</i> ut laoreet dolore magna aliquam erat volutpat.
-        Ut <big>wisi</big> enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-        lobortis nisl ut <small>aliquip</small> ex ea commodo consequat.
-        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-        vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-        praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-        <div class="progress">
-          Mandarin
-          <div class="outer">
-            <div class="bar init" style="width: 95%"></div>
-          </div>
-        </div>
-        <div class="progress">
-          Cantonese
-          <div class="outer">
-            <div class="bar init" style="width: 80%"></div>
-          </div>
-        </div>
-        <div class="progress">
-          English
-          <div class="outer">
-            <div class="bar init" style="width: 85%"></div>
-          </div>
-        </div>
-        <div class="progress">
-          German
-          <div class="outer">
-            <div class="bar init" style="width: 50%"></div>
-          </div>
-        </div>
-        <div class="progress">
-          Spanish
-          <div class="outer">
-            <div class="bar init" style="width: 10%"></div>
-          </div>
-        </div>
-        <div class="progress">
-          Russian
-          <div class="outer">
-            <div class="bar init" style="width: 1%"></div>
-          </div>
-        </div>
-        <table>
-          <tbody>
-            <tr><th>&nbsp;1</th><th>&nbsp;2</th><th>3&nbsp;</th><th>&nbsp;4</th><th>5&nbsp;</th></tr>
-            <tr><td>&nbsp;1</td><td>&nbsp;2</td><td>&nbsp;3</td><td>&nbsp;4</td><td>&nbsp;5</td></tr>
-            <tr><td>&nbsp;1</td><td>&nbsp;2</td><td>&nbsp;3</td><td>&nbsp;4</td><td>&nbsp;5</td></tr>
-            <tr><td>&nbsp;1</td><td>&nbsp;2</td><td>&nbsp;3</td><td>&nbsp;4</td><td>&nbsp;5</td></tr>
-            <tr><td>&nbsp;1</td><td>&nbsp;2</td><td>&nbsp;3</td><td>&nbsp;4</td><td>&nbsp;5</td></tr>
-          </tbody>
-        </table>
-        <ul>
-          <li>First list item</li>
-          <li><u>Second</u> list item</li>
-          <li><s>Third</s> list item</li>
-        </ul>
-        <blockquote>I am Groot.</blockquote>
-        <p><img src="http://olxpdoc6c.bkt.clouddn.com/footprint/wallpaper/corner.jpg"></p>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-        nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-        vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-        praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-        <pre><code>#include\n#include</code></pre>
-        <p><img src="http://olxpdoc6c.bkt.clouddn.com/footprint/team/guangzhourf-border.png"></p>
-        <blockquote>I am Batman.</blockquote>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-        nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-        vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-        praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>`
-      });
-      paras.push({title: 'mid', cover: '', html: '123', text: '123'});
+      // paras.unshift({
+      //   title: 'HTML',
+      //   text: 'html',
+      //   cover: 'http://olxpdoc6c.bkt.clouddn.com/footprint/team/changchunyatai-star.png',
+      //   html: `<p>This is <a href="http://bogobogo.cn">Bogo's</a> personal website.<br/>
+      //   Lorem <b>ipsum</b> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+      //   nibh euismod <i>tincidunt</i> ut laoreet dolore magna aliquam erat volutpat.
+      //   Ut <big>wisi</big> enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+      //   lobortis nisl ut <small>aliquip</small> ex ea commodo consequat.
+      //   Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
+      //   vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+      //   praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+      //   <div class="progress">
+      //     Mandarin
+      //     <div class="outer">
+      //       <div class="bar init" style="width: 95%"></div>
+      //     </div>
+      //   </div>
+      //   <div class="progress">
+      //     Cantonese
+      //     <div class="outer">
+      //       <div class="bar init" style="width: 80%"></div>
+      //     </div>
+      //   </div>
+      //   <div class="progress">
+      //     English
+      //     <div class="outer">
+      //       <div class="bar init" style="width: 85%"></div>
+      //     </div>
+      //   </div>
+      //   <div class="progress">
+      //     German
+      //     <div class="outer">
+      //       <div class="bar init" style="width: 50%"></div>
+      //     </div>
+      //   </div>
+      //   <div class="progress">
+      //     Spanish
+      //     <div class="outer">
+      //       <div class="bar init" style="width: 10%"></div>
+      //     </div>
+      //   </div>
+      //   <div class="progress">
+      //     Russian
+      //     <div class="outer">
+      //       <div class="bar init" style="width: 1%"></div>
+      //     </div>
+      //   </div>
+      //   <table>
+      //     <tbody>
+      //       <tr><th>&nbsp;1</th><th>&nbsp;2</th><th>3&nbsp;</th><th>&nbsp;4</th><th>5&nbsp;</th></tr>
+      //       <tr><td>&nbsp;1</td><td>&nbsp;2</td><td>&nbsp;3</td><td>&nbsp;4</td><td>&nbsp;5</td></tr>
+      //       <tr><td>&nbsp;1</td><td>&nbsp;2</td><td>&nbsp;3</td><td>&nbsp;4</td><td>&nbsp;5</td></tr>
+      //       <tr><td>&nbsp;1</td><td>&nbsp;2</td><td>&nbsp;3</td><td>&nbsp;4</td><td>&nbsp;5</td></tr>
+      //       <tr><td>&nbsp;1</td><td>&nbsp;2</td><td>&nbsp;3</td><td>&nbsp;4</td><td>&nbsp;5</td></tr>
+      //     </tbody>
+      //   </table>
+      //   <ul>
+      //     <li>First list item</li>
+      //     <li><u>Second</u> list item</li>
+      //     <li><s>Third</s> list item</li>
+      //   </ul>
+      //   <blockquote>I am Groot.</blockquote>
+      //   <p><img src="http://olxpdoc6c.bkt.clouddn.com/footprint/wallpaper/corner.jpg"></p>
+      //   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+      //   nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+      //   Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+      //   Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
+      //   vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+      //   praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+      //   <pre><code>#include\n#include</code></pre>
+      //   <p><img src="http://olxpdoc6c.bkt.clouddn.com/footprint/team/guangzhourf-border.png"></p>
+      //   <blockquote>I am Batman.</blockquote>
+      //   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+      //   nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+      //   Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+      //   Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
+      //   vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+      //   praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>`
+      // });
+      // paras.push({title: 'mid', cover: '', html: '123', text: '123'});
       // set para's mode
       for (let i = 0, len = paras.length; i < len; ++i) {
         paras[i].mode = paras[i].cover ? (isLeft ? 'left' : 'right') : 'middle';
@@ -205,7 +208,7 @@ export class ArticleComponent implements OnInit {
   getImage(url) {
     const image = new Image();
     this.imageReady = false;
-    this.asyncImage = 'https://dummyimage.com/8x5/f279a9';
+    this.asyncImage = `${url}?imageView2/0/w/40/q/10|imageslim`;
     image.src = url;
     image.onload = () => {
       this.asyncImage = url;
@@ -248,8 +251,12 @@ export class ArticleComponent implements OnInit {
   }
 
   calParaConfigs() {
-    const paras = this.elementRef.nativeElement.getElementsByClassName('title');
-    this.circleWidth = document.getElementById('circle').offsetWidth;
+    const paras = this.elementRef.nativeElement.getElementsByClassName('title'),
+      circle = document.getElementById('circle');
+    if (!circle) {
+      return;
+    }
+    this.circleWidth = circle.offsetWidth;
     for (let i = 0, len = paras.length; i < len; ++i) {
       this.paraConfigs[i].top = this.getElementTop(paras[i]);
     }

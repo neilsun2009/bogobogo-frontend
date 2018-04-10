@@ -18,6 +18,8 @@ import { AdminGuard } from './services/admin-guard.service';
 import { GlobalGeneralGuard } from './services/global-general-guard.service';
 import { LoginComponent } from './components/login-signup/login.component';
 import { SignupComponent } from './components/login-signup/signup.component';
+import { LogoutComponent } from './components/login-signup/logout.component';
+import { FourOFourComponent } from './components/404/404.component';
 
 const appRoutes: Routes = [
   {
@@ -88,11 +90,23 @@ const appRoutes: Routes = [
       {
         path: 'login',
         component: LoginComponent
-      }
+      },
+      // {
+      //   path: 'signup',
+      //   component: SignupComponent
+      // },
+      {
+        path: 'logout',
+        component: LogoutComponent,
+        canActivate: [AdminGuard],
       },
       {
-        path: 'signup',
-        component: SignupComponent
+        path: '404',
+        component: FourOFourComponent
+      },
+      {
+        path: '**',
+        component: FourOFourComponent
       }
     ]
   },

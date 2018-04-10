@@ -17,13 +17,9 @@ export class DeleteArticleComponent {
   ) { }
 
   delete() {
-    this.articleService.delete({id: this.data._id},
+    this.articleService.delete({_id: this.data._id},
       (data) => {
-        if (data.result) {
-          this.dialogRef.close(true);
-        } else {
-          this.handleError(data);
-        }
+        this.dialogRef.close(true);
       }, this.handleError);
   }
 

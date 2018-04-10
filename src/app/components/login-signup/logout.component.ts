@@ -6,18 +6,14 @@ import { GeneralService } from '../../services/api/general.service';
 import { TitleService } from '../../services/title.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
+  selector: 'app-logout',
+  templateUrl: './logout.component.html',
   styleUrls: ['./login-signup.component.less']
 })
-export class LoginComponent implements OnInit {
+export class LogoutComponent implements OnInit {
 
   user: User;
-  hasLoggedIn: boolean;
-  loginParam: {
-    username: string;
-    password: string;
-  };
+  hasLoggedOut: boolean;
   catConfig: any;
 
   constructor(
@@ -26,16 +22,12 @@ export class LoginComponent implements OnInit {
     private bgConfigService: BgConfigService,
     private titleService: TitleService
   ) {
-    this.hasLoggedIn = false;
-    this.loginParam = {
-      username: '',
-      password: ''
-    };
+    this.hasLoggedOut = false;
     this.catConfig = generalService.generalData.cats.index;
   }
 
   ngOnInit() {
-    this.titleService.setTitle('Login');
+    this.titleService.setTitle('Logout');
     document.body.scrollTop = 0;
     this.bgConfigService.setConfig({
       primaryColor: this.catConfig.primaryColor,
@@ -46,14 +38,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-    this.authService.login(this.loginParam,
+  logout() {
+    this.authService.logout(
     (data) => {
-      this.hasLoggedIn = true;
-      this.authService.hasLoggedIn = true;
-      this.authService.user = data;
+      this.hasLoggedOut = true;
     }, (err) => {
-      alert(err.message);
+      alert(err);
       console.log(err);
     });
   }

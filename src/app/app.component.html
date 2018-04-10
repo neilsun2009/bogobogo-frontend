@@ -4,11 +4,15 @@
 <router-outlet></router-outlet> 
 
 <footer>
-    <h1>&copy; BOGO 2016-2018</h1>
+    <h1 (click)="toLogin()">&copy; BOGO 2016-2018</h1>
     <p>
-      <a href="/advice">Any Advice?</a> |
-      <a href="/contact">Contact Me</a> |
-      <a href="/log">Website Log</a>
+      <a routerLink="/">Homepage</a> |
+      <a routerLink="/advice">Any Advice?</a> |
+      <a routerLink="/contact">Contact Me</a> |
+      <a routerLink="/log">Website Log</a>
+      <ng-container *ngIf="user && user.access === 'administrator'">
+        | <a routerLink="/logout">Logout</a>
+      </ng-container>      
     </p>
     <p>
       <a class="beian" href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17002636号-1</a>

@@ -4,6 +4,7 @@ import { Word} from '../../../models/word';
 import { User } from '../../../models/user';
 import { AuthService } from '../../../services/api/auth.service';
 import { DeleteWordComponent } from '../delete-word/delete-word.component';
+import { UpdateWordComponent } from '../update-word/update-word.component';
 import { AddWordComponent } from '../add-word/add-word.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
 
@@ -87,11 +88,12 @@ export class WordListComponent implements OnInit, OnDestroy {
         this.hasMore = false;
         // this.canScrollLoad = false;
       } else {
-        for (let i = 0, len = data.data.length; i < len; ++i) {
+        this.noResult = false;
+        for (let i = 0, len = data.words.length; i < len; ++i) {
           // data.data[i].image = Math.floor(Math.random() * 2) ? data.data[i].image : '';
           this.tops[i] = 0;
         }
-        this.words = this.words.concat(data.data);
+        this.words = this.words.concat(data.words);
         if (data.count <= this.offset + this.limit) {
           // this.canScrollLoad = false;
           this.hasMore = false;
@@ -173,12 +175,37 @@ export class WordListComponent implements OnInit, OnDestroy {
     });
   }
 
+  update(id) {
+    // console.log(id);
+    if (!this.user || this.user.access !== 'administrator') {
+      return;
+    }
+    const dialogRef = this.dialog.open(UpdateWordComponent, {
+      data: this.words[id],
+      width: '400px',
+      height: '300px',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBar.open('Word modified!', 'Meh', {
+          duration: 1500
+        });
+        this.words = [];
+        this.offset = 0;
+        this.getWords();
+      }
+    });
+  }
+
   add() {
     if (!this.user || this.user.access !== 'administrator') {
       return;
     }
     const dialogRef = this.dialog.open(AddWordComponent, {
-      width: '400px'
+      width: '400px',
+      height: '300px',
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

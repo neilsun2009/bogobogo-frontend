@@ -12,6 +12,7 @@ export class ParaComponent implements OnInit {
     title: string;
     cover?: string;
     html: string;
+    mode?: string;
   };
   @Input() primaryColor: string;
   @Input() secondaryColor: string;

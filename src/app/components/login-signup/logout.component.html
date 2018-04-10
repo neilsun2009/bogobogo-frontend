@@ -1,0 +1,8 @@
+<div class="container mat-app-background">
+  <div class="header">
+    <h1>LOGOUT</h1>
+    <h3 *ngIf="hasLoggedOut">Bye Bogo!</h3>
+    <p *ngIf="hasLoggedOut"><a routerLink="/">Click to homepage!</a></p>        
+  </div>
+  <button *ngIf="!hasLoggedOut" class="middle" mat-raised-button color="primary" (click)="logout()">Logout</button>    
+</div>

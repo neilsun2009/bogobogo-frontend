@@ -38,7 +38,7 @@ export class QiniuService {
       // save_key: true,                  // 默认false。若在服务端生成uptoken的上传策略中指定了sava_key，则开启，SDK在前端将不对key进行任何处理
       domain: this.domainUrl,     // bucket域名，下载资源时用到，必需
       container: containerId,             // 上传区域DOM ID，默认是browser_button的父元素
-      max_file_size: '10mb',             // 最大文件体积限制
+      max_file_size: '2mb',             // 最大文件体积限制
       flash_swf_url: '/assets/js/Moxie.swf',  // 引入flash，相对路径
       max_retries: 3,                     // 上传失败最大重试次数
       dragdrop: true,                     // 开启可拖曳上传

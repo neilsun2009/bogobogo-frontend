@@ -1,7 +1,8 @@
 <div class="container mat-app-background">
   <div class="header">
     <h1>LOGIN</h1>
-    <h3 *ngIf="hasLoggedIn">Login succeeded!</h3>
+    <h3 *ngIf="hasLoggedIn">Greetings, Bogo!</h3>
+    <p *ngIf="hasLoggedIn"><a routerLink="/">Click to your command center!</a></p>    
   </div>
   <form *ngIf="!hasLoggedIn" (ngSubmit)="login()" name="loginForm" #loginForm="ngForm">
     <!-- username -->

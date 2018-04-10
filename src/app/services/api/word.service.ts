@@ -18,7 +18,7 @@ export class WordService {
     const url = this.http.concatUrl(this.wordsUrl,
       ['before', 's', 'offset', 'limit'],
       [before, s, offset, limit]);
-    this.http.get<IResponse<Word[]>>(url, callback, err);
+    this.http.get<IResponse<{words: Word[], count}>>(url, callback, err);
   }
 
   // getOneAsync(href): Observable<IResponse<Word>> {
@@ -27,12 +27,12 @@ export class WordService {
   // }
 
   delete(params, callback, err) {
-    this.http.delete<IResponse<Word>>(this.oneUrl, params, callback, err);
+    this.http.delete<IResponse<Word>>(`${this.oneUrl}/id/${params._id}`, params, callback, err);
   }
 
-  // update(params, callback, err) {
-  //   this.http.put<IResponse<Comment>>(this.oneUrl, params, callback, err);
-  // }
+  update(params, callback, err) {
+    this.http.put<IResponse<Comment>>(`${this.oneUrl}/id/${params._id}`, params, callback, err);
+  }
 
   add(params, callback, err) {
     this.http.post<IResponse<Word>>(this.oneUrl, params, callback, err);

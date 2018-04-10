@@ -84,12 +84,14 @@ export class ListComponent implements OnInit {
     (data) => {
       this.loadLock = false;
       this.showLoading = false;
+      // console.log(data);
       if (data.count === 0) {
         this.noResult = true;
         this.hasMore = false;
         // this.canScrollLoad = false;
       } else {
-        this.articles = this.articles.concat(data.data);
+        this.noResult = false;
+        this.articles = this.articles.concat(data.articles);
         if (data.count <= this.offset + this.limit) {
           // this.canScrollLoad = false;
           this.hasMore = false;

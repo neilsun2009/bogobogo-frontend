@@ -1,4 +1,4 @@
-<div class="title container" [class.pending]="pendingTitle" [style.background-color]="primaryColor">
+<div class="title container" *ngIf="para.title" [class.pending]="pendingTitle" [style.background-color]="primaryColor">
   <div class="bg" [style.background-color]="secondaryColor"></div>
   <h1 class="text" [style.color]="primaryColor">
     {{para.title}}

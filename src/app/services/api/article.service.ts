@@ -18,20 +18,19 @@ export class ArticleService {
     const url = this.http.concatUrl(this.articlesUrl,
       ['cat', 'before', 'tag', 's', 'offset', 'limit'],
       [cat, before, tag, s, offset, limit]);
-    this.http.get<IResponse<Article[]>>(url, callback, err);
+    this.http.get<IResponse<{articles: Article[], count: number}>>(url, callback, err);
   }
 
   getOneAsync(href): Observable<IResponse<Article>> {
-    const params = `?href=${href}`;
-    return this.http.getAsync<IResponse<Article>>(`${this.oneUrl}${params}`);
+    return this.http.getAsync<IResponse<Article>>(`${this.oneUrl}/href/${href}`);
   }
 
   delete(params, callback, err) {
-    this.http.delete<IResponse<Article>>(this.oneUrl, params, callback, err);
+    this.http.delete<IResponse<Article>>(`${this.oneUrl}/id/${params._id}`, params, callback, err);
   }
 
   update(params, callback, err) {
-    this.http.put<IResponse<Article>>(this.oneUrl, params, callback, err);
+    this.http.put<IResponse<Article>>(`${this.oneUrl}/id/${params._id}`, params, callback, err);
   }
 
   add(params, callback, err) {

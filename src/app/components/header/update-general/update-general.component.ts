@@ -52,11 +52,7 @@ export class UpdateGeneralComponent implements OnInit {
   update() {
     this.generalService.update(this.updateParam,
     (data) => {
-      if (data.result) {
-        this.dialogRef.close(data);
-      } else {
-        this.handleError(data);
-      }
+      this.dialogRef.close(data);
     }, this.handleError);
   }
 

@@ -17,6 +17,7 @@
       <ng-container *ngIf="user && user.access==='administrator'">
         <a [routerLink]="'/admin-article/' + article.href">*U</a> 
         <a (click)="delete()">*D</a>
+        <a *ngIf="!article.isPublic" class="red" [routerLink]="'/admin-article/' + article.href">*P</a>         
       </ng-container>
       <a [routerLink]="'/tag/' + tag" *ngFor="let tag of article.tags">#{{tag}} </a>
     </h3>

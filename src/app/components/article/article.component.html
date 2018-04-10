@@ -14,6 +14,7 @@
       <ng-container *ngIf="user && user.access==='administrator'">
         <a [routerLink]="'/admin-article/' + article.href">U</a> ·
         <a (click)="delete()">D</a>
+        <ng-container *ngIf="!article.isPublic"> · P</ng-container>
       </ng-container>
     </h3>
   </div>
@@ -23,7 +24,7 @@
   [primaryColor]="article.primaryColor"
   [secondaryColor]="article.secondaryColor">
 </app-para>
-<div class="para-picker" [class.show]="showParaPicker">
+<div class="para-picker" *ngIf="article.paras.length > 1" [class.show]="showParaPicker">
   <div class="picker">
     <ul [class.hide]="hideParaList">
       <li *ngFor="let para of paraConfigs;let i = index" (click)="scrollToPara(i)">{{i+1}}. {{para.title}}</li>
