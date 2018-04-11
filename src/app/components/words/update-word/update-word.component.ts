@@ -17,6 +17,7 @@ export class UpdateWordComponent implements OnInit {
     image: string;
     isPublic: boolean;
   };
+  dateString: string;
 
   constructor(
     public dialogRef: MatDialogRef<UpdateWordComponent>,
@@ -28,7 +29,7 @@ export class UpdateWordComponent implements OnInit {
 
   ngOnInit() {
     this.updateParam = this.data;
-    this.qiniuService.upload(window['Qiniu'], 'uploadBtn', 'uploadCtn', 'uploadCtn', 'bogobogo/words/',
+    this.qiniuService.upload(window['Qiniu'], 'uploadBtn', 'uploadCtn', 'uploadCtn', `bogobogo/words/${this.dateString}/`,
     (up, file, info) => {
       const res = JSON.parse(info.response);
       this.updateParam.image = `${this.qiniuService.domainUrl}${res.key}`;
@@ -43,6 +44,15 @@ export class UpdateWordComponent implements OnInit {
     (data) => {
       this.dialogRef.close(data);
     }, this.handleError);
+  }
+
+  calDateString() {
+    const date = new Date(),
+      year = date.getFullYear(),
+      month = ((date.getMonth() + 101) + '').slice(-2),
+      day = ((date.getDate() + 100) + '').slice(-2);
+    this.dateString = `${year}-${month}-${day}`;
+    // console.log(this.dateString);
   }
 
   private handleError(err) {

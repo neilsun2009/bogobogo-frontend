@@ -61,7 +61,7 @@ export class ItemComponent implements OnInit {
     const image = new Image();
     this.imageReady = false;
     this.asyncImage = `${url}?imageView2/0/w/40/q/10|imageslim`;
-    image.src = `${url}?imageView2/0/w/400/q/90|imageslim`;
+    image.src = `${url}?imageView2/0/w/500/q/90|imageslim`;
     image.onload = () => {
       this.asyncImage = image.src;
       this.imageReady = true;

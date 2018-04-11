@@ -16,6 +16,7 @@ export class AddWordComponent implements OnInit {
     image: string;
     isPublic: boolean;
   };
+  dateString: string;
 
   constructor(
     public dialogRef: MatDialogRef<AddWordComponent>,
@@ -30,7 +31,8 @@ export class AddWordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.qiniuService.upload(window['Qiniu'], 'uploadBtn', 'uploadCtn', 'uploadCtn', 'bogobogo/words/',
+    this.calDateString();
+    this.qiniuService.upload(window['Qiniu'], 'uploadBtn', 'uploadCtn', 'uploadCtn', `bogobogo/words/${this.dateString}/`,
     (up, file, info) => {
       const res = JSON.parse(info.response);
       this.addParam.image = `${this.qiniuService.domainUrl}${res.key}`;
@@ -38,6 +40,15 @@ export class AddWordComponent implements OnInit {
       alert('err');
       console.log(errTip);
     });
+  }
+
+  calDateString() {
+    const date = new Date(),
+      year = date.getFullYear(),
+      month = ((date.getMonth() + 101) + '').slice(-2),
+      day = ((date.getDate() + 100) + '').slice(-2);
+    this.dateString = `${year}-${month}-${day}`;
+    // console.log(this.dateString);
   }
 
   add() {

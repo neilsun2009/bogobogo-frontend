@@ -18,6 +18,8 @@ import { ArticleService } from './services/api/article.service';
 import { AuthService } from './services/api/auth.service';
 import { QiniuService } from './services/api/qiniu.service';
 import { WordService } from './services/api/word.service';
+import { LogService } from './services/api/log.service';
+import { ByteService } from './services/api/byte.service';
 import { AdminGuard } from './services/admin-guard.service';
 import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
 
@@ -51,6 +53,9 @@ import { LoginComponent } from './components/login-signup/login.component';
 import { SignupComponent } from './components/login-signup/signup.component';
 import { LogoutComponent } from './components/login-signup/logout.component';
 import { FourOFourComponent } from './components/404/404.component';
+import { ByteListComponent } from './components/bytes/byte-list/byte-list.component';
+import { AddByteComponent } from './components/bytes/add-byte/add-byte.component';
+import { UpdateByteComponent } from './components/bytes/update-byte/update-byte.component';
 
 import {MatButtonModule, MatCheckboxModule, MatMenuModule,
   MatInputModule, MatFormFieldModule, MatSelectModule,
@@ -88,7 +93,10 @@ import {MatButtonModule, MatCheckboxModule, MatMenuModule,
     LoginComponent,
     SignupComponent,
     LogoutComponent,
-    FourOFourComponent
+    FourOFourComponent,
+    ByteListComponent,
+    AddByteComponent,
+    UpdateByteComponent
   ],
   entryComponents: [
     DeleteParaComponent,
@@ -96,7 +104,9 @@ import {MatButtonModule, MatCheckboxModule, MatMenuModule,
     DeleteWordComponent,
     AddWordComponent,
     UpdateGeneralComponent,
-    UpdateWordComponent
+    UpdateWordComponent,
+    AddByteComponent,
+    UpdateByteComponent
   ],
   imports: [
     BrowserModule,
@@ -130,7 +140,9 @@ import {MatButtonModule, MatCheckboxModule, MatMenuModule,
     ArticleResolver,
     AdminGuard,
     WordService,
-    TitleService
+    TitleService,
+    ByteService,
+    LogService
   ],
   bootstrap: [AppComponent]
 })

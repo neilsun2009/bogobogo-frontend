@@ -29,7 +29,7 @@ export class GlobalAuthGuard implements CanActivate, CanActivateChild {
           this.authService.hasLoggedIn = true;
           this.authService.user = data.data;
         }
-        console.log(data.data);
+        // console.log(data.data);
         return true;
       });
     // return true;

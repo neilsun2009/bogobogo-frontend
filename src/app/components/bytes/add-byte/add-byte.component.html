@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Add ßyte - {{addParam.date}}!</h2>
+<form (ngSubmit)="add()" name="addForm" #addForm="ngForm">
+  <!-- text -->
+  <mat-form-field class="full-width">
+    <input name="character" required matInput placeholder="Character" [(ngModel)]="addParam.character">
+  </mat-form-field>
+  
+  <!-- text -->
+  <mat-form-field class="full-width">
+    <input name="note" matInput placeholder="And I wanna say..." [(ngModel)]="addParam.note">
+  </mat-form-field>
+  
+  <br/>
+  <mat-dialog-actions>
+    <button type="submit" mat-raised-button color="primary" 
+    [disabled]="!addForm.form.valid">Post</button>    
+    <button mat-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,34 @@
+<div class="container">
+  <div (click)="addOrUpdate()" class="highlight" [@byte]="highlight.date" *ngIf="highlight">
+    <p class="top">
+      <span>{{highlight.date | date: 'EEE.'}}</span>
+      <span class="right">{{highlight.date | date: 'MMM d, y'}}</span>
+    </p>
+    <p class="character">
+      {{highlight.byte ? highlight.byte.character : '?'}}
+    </p>
+    <p class="note">
+      {{highlight.byte ? highlight.byte.note : ''}}
+    </p>
+  </div>
+  <div class="list">
+    <div class="picker" (click)="clickPicker(-1)">
+      <p>&laquo;</p>
+    </div>
+    <div class="item" [@byte]="byte.date" *ngFor="let byte of bytes; let i = index" (click)="setHighlight(i)">
+      <p class="top">
+        {{byte.date | date: 'EEE.'}}
+      </p>
+      <p class="character">
+        {{byte.byte ? byte.byte.character : '?'}}
+      </p>
+      <p class="bottom">
+        {{byte.date | date: 'd MMM'}}
+      </p>
+    </div>
+    <div class="picker" (click)="clickPicker(1)">
+        <p>&raquo;</p>
+    </div>
+  </div>
+</div>
+<app-date-picker (onChangeDate)="onChangeDate($event)"></app-date-picker>  
