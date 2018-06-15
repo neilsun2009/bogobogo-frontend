@@ -1,5 +1,5 @@
 <!-- <div class="menu"> -->
-  <ul>
+  <ul [class.showBorder]="showMenu">
     <li [@left]="animStates[0]" *ngIf="showMenu"><a routerLink="/bio">B</a></li>
     <li [@right]="animStates[0]" *ngIf="showMenu"><a routerLink="/coding">O</a></li>
     <li [@left]="animStates[1]" *ngIf="showMenu"><a routerLink="/design">G</a></li>

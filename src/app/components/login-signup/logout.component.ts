@@ -28,7 +28,7 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Logout');
-    document.body.scrollTop = 0;
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.bgConfigService.setConfig({
       primaryColor: this.catConfig.primaryColor,
       secondaryColor: this.catConfig.secondaryColor,

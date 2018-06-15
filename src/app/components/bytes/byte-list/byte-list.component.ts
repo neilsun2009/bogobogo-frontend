@@ -8,6 +8,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { AddByteComponent } from '../add-byte/add-byte.component';
 import { UpdateByteComponent } from '../update-byte/update-byte.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { DeleteByteComponent } from '../delete-byte/delete-byte.component';
 
 class DisplayByte {
   date?: Date;
@@ -65,7 +66,7 @@ export class ByteListComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService.user;
     // this.getSunday(new Date());
-    this.after = this.getSunday(new Date());
+    this.after = this.getSunday(moment(new Date()).subtract(1, 'd'));
     this.getBytes();
   }
 
@@ -108,7 +109,7 @@ export class ByteListComponent implements OnInit {
           }
           if (that.isInit) {
             that.isInit = false;
-            that.setHighlight(new Date());
+            that.setHighlight(moment(new Date()).subtract(1, 'd'));
           } else {
             that.setHighlight(0);
           }
@@ -133,6 +134,28 @@ export class ByteListComponent implements OnInit {
       startMoment.add(1, 'd');
     }
     // console.log(this.bytes);
+  }
+
+  delete(id) {
+    // console.log(id);
+    if (!this.user || this.user.access !== 'administrator') {
+      return;
+    }
+    if (!this.highlight.byte) {
+      return;
+    }
+    const dialogRef = this.dialog.open(DeleteByteComponent, {
+      data: this.highlight,
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBar.open('Byte deleted!', 'Meh', {
+          duration: 1500
+        });
+        this.getBytes();
+      }
+    });
   }
 
   addOrUpdate() {
@@ -186,11 +209,11 @@ export class ByteListComponent implements OnInit {
     }
   }
 
-  private getSunday(date: Date | string) {
+  private getSunday(date: Date | string | moment.Moment) {
     return moment(date).day(0).format('YYYY-MM-DD');
   }
 
-  private setHighlight(num: Date | number) {
+  private setHighlight(num: Date | number | moment.Moment) {
     if (typeof num === 'number') {
       if (num >= 0 && num < 7) {
         this.highlight = this.bytes[num];

@@ -17,6 +17,7 @@ import { GeneralService } from './services/api/general.service';
 import { ArticleService } from './services/api/article.service';
 import { AuthService } from './services/api/auth.service';
 import { QiniuService } from './services/api/qiniu.service';
+import { WXService } from './services/api/wx.service';
 import { WordService } from './services/api/word.service';
 import { LogService } from './services/api/log.service';
 import { ByteService } from './services/api/byte.service';
@@ -28,6 +29,7 @@ import { IndexComponent } from './components/index/index.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { BgComponent } from './components/bg/bg.component';
 import { MoreComponent } from './components/more/more.component';
+import { TagComponent } from './components/tag/tag.component';
 import { BioComponent } from './components/bio/bio.component';
 import { CodingComponent } from './components/coding/coding.component';
 import { DesignComponent } from './components/design/design.component';
@@ -56,6 +58,7 @@ import { FourOFourComponent } from './components/404/404.component';
 import { ByteListComponent } from './components/bytes/byte-list/byte-list.component';
 import { AddByteComponent } from './components/bytes/add-byte/add-byte.component';
 import { UpdateByteComponent } from './components/bytes/update-byte/update-byte.component';
+import { DeleteByteComponent } from './components/bytes/delete-byte/delete-byte.component';
 
 import {MatButtonModule, MatCheckboxModule, MatMenuModule,
   MatInputModule, MatFormFieldModule, MatSelectModule,
@@ -96,7 +99,9 @@ import {MatButtonModule, MatCheckboxModule, MatMenuModule,
     FourOFourComponent,
     ByteListComponent,
     AddByteComponent,
-    UpdateByteComponent
+    UpdateByteComponent,
+    DeleteByteComponent,
+    TagComponent
   ],
   entryComponents: [
     DeleteParaComponent,
@@ -106,7 +111,8 @@ import {MatButtonModule, MatCheckboxModule, MatMenuModule,
     UpdateGeneralComponent,
     UpdateWordComponent,
     AddByteComponent,
-    UpdateByteComponent
+    UpdateByteComponent,
+    DeleteByteComponent
   ],
   imports: [
     BrowserModule,
@@ -142,7 +148,8 @@ import {MatButtonModule, MatCheckboxModule, MatMenuModule,
     WordService,
     TitleService,
     ByteService,
-    LogService
+    LogService,
+    // WXService
   ],
   bootstrap: [AppComponent]
 })

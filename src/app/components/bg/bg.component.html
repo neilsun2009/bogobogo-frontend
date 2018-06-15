@@ -1,8 +1,8 @@
 <div class="container" [style.background-color]="primaryColor">
-  <div class="half" [style.background-color]="secondaryColor"></div>
+  <div class="half" [class.left]="halfLeft" [style.background-color]="secondaryColor"></div>
   <div class="layer" [@layerBg]="layerBg" [style.background]="layerBg"></div>  
   <div class="band" *ngIf="showAnim" [style.background-color]="fastSecondaryColor"></div>
 </div>
-<div class="trigger" [@trigger]="true" *ngIf="showTrigger" [class.active]="showMenu" [class.scrolled]="scrollTrigger" (click)="showMenu=!showMenu" [style.color]="primaryColor"></div>
+<div class="trigger" [@trigger]="true" *ngIf="showTrigger" [class.active]="showMenu" [class.scrolled]="scrollTrigger" (click)="clickTrigger()" [style.color]="primaryColor"></div>
 <div class="menu-cover" (click)="showMenu = false" [@cover]="true" *ngIf="showTrigger && showMenu"></div>
 <app-menu [showMenu]="showMenu"></app-menu>

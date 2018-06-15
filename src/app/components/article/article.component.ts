@@ -9,6 +9,7 @@ import { AuthService } from '../../services/api/auth.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { DeleteArticleComponent } from '../article/admin/delete-article/delete-article.component';
 import { TitleService } from '../../services/title.service';
+// import { WXService } from '../../services/api/wx.service';
 
 @Component({
   selector: 'app-article',
@@ -73,7 +74,8 @@ export class ArticleComponent implements OnInit {
     private renderer: Renderer2,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    private titleService: TitleService
+    private titleService: TitleService,
+    // private wxService: WXService
   ) {
     this.resizeNumber = 0;
     this.paraConfigs = [];
@@ -84,11 +86,13 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.user;
-    document.body.scrollTop = 0;
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.route.data.subscribe((data: {article: Article}) => {
       const paras = data.article.paras;
       let isLeft = true;
       this.titleService.setTitle(data.article.title);
+      // this.wxService.setConfig(window['wx'], location.href, data.article.title,
+      //   `from BogoBogo.cn`, data.article.image);
       // paras.push({title: 'mid', cover: '', html: '123', text: '123'});
       // set para's mode
       for (let i = 0, len = paras.length; i < len; ++i) {

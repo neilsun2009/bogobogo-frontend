@@ -50,7 +50,7 @@ export class AdminArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.body.scrollTop = 0;
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.bgConfigService.setConfig({
       primaryColor: '#798cf2',
       secondaryColor: '#f28979',

@@ -8,8 +8,8 @@
     <p>
       <a routerLink="/">Homepage</a> |
       <!-- <a routerLink="/advice">Any Advice?</a> | -->
-      <a routerLink="/contact">Contact Me</a> |
-      <a routerLink="/log">Website Log</a>
+      <a routerLink="/article/contact-me">Contact Me</a> |
+      <a routerLink="/article/website-log">Website Log</a>
       <ng-container *ngIf="user && user.access === 'administrator'">
         | <a routerLink="/logout">Logout</a>
       </ng-container>      

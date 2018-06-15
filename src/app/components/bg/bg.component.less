@@ -9,7 +9,17 @@
   height: 100vh;
   background-color: #ffffff;
   .half {
+    position: absolute;
+    height: 100%;
+    width: 120%;
+    top: 0;
+    left: 50%;
+    z-index: 0;
     background-color: #ffffff;
+    // transition: 1.0s all ease-out;
+    &.left {
+      left: -70%;
+    }
   }
   .band {
     position: absolute;

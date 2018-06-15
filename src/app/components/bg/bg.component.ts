@@ -47,6 +47,7 @@ export class BgComponent implements OnInit {
   showMenu: boolean;
   showTrigger: boolean;
   scrollTrigger: boolean;
+  halfLeft: boolean;
 
   constructor(
     private bgConfigService: BgConfigService,
@@ -55,6 +56,7 @@ export class BgComponent implements OnInit {
     this.showAnim = false;
     this.showMenu = false;
     this.scrollTrigger = false;
+    this.halfLeft = false;
   }
 
   ngOnInit() {
@@ -81,12 +83,33 @@ export class BgComponent implements OnInit {
   }
 
   scrollHander() {
-    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
+      clientHeight = document.documentElement.clientHeight;
     if (scrollTop >= 80) {
       this.scrollTrigger = true;
     } else {
       this.scrollTrigger = false;
     }
+    // if (clientHeight * 2 / 3 < scrollTop) {
+    //   this.halfLeft = true;
+    //   // console.log(this.showDatePicker);
+    // } else {
+    //   this.halfLeft = false;
+    // }
+  }
+
+  clickTrigger() {
+    this.showMenu = !this.showMenu;
+    // if (this.showMenu) {
+    //   this.showTrigger = true;
+    // } else {
+    //   if (this.scrollTrigger) {
+    //     this.scrollTrigger = false;
+    //     setTimeout(() => {
+    //       this.scrollTrigger = true;
+    //     }, 5);
+    //   }
+    // }
   }
 
 }

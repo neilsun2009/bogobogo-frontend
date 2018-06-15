@@ -20,6 +20,7 @@ import { LoginComponent } from './components/login-signup/login.component';
 import { SignupComponent } from './components/login-signup/signup.component';
 import { LogoutComponent } from './components/login-signup/logout.component';
 import { FourOFourComponent } from './components/404/404.component';
+import { TagComponent } from './components/tag/tag.component';
 
 const appRoutes: Routes = [
   {
@@ -75,6 +76,10 @@ const appRoutes: Routes = [
         path: 'article/:name',
         component: ArticleComponent,
         resolve: {article: ArticleResolver},
+      },
+      {
+        path: 'tag/:tag',
+        component: TagComponent,
       },
       {
         path: 'admin-article/:name',

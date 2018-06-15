@@ -3,6 +3,10 @@
     "target": "http://localhost:9090",
     "secure": false
   },
+  "/api2": {
+    "target": "http://bogobogo.cn",
+    "secure": false
+  },
   "/123socket.io": {
     "target": "http://localhost:2017",
     "secure": false

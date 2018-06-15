@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Login');
-    document.body.scrollTop = 0;
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.bgConfigService.setConfig({
       primaryColor: this.catConfig.primaryColor,
       secondaryColor: this.catConfig.secondaryColor,

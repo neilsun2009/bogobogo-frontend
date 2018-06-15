@@ -1,10 +1,10 @@
 <div class="container">
-  <div (click)="addOrUpdate()" class="highlight" [@byte]="highlight.date" *ngIf="highlight">
+  <div class="highlight" [@byte]="highlight.date" *ngIf="highlight">
     <p class="top">
-      <span>{{highlight.date | date: 'EEE.'}}</span>
+      <span (click)="delete()">{{highlight.date | date: 'EEE.'}}</span>
       <span class="right">{{highlight.date | date: 'MMM d, y'}}</span>
     </p>
-    <p class="character">
+    <p (click)="addOrUpdate()" class="character">
       {{highlight.byte ? highlight.byte.character : '?'}}
     </p>
     <p class="note">

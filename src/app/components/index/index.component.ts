@@ -31,6 +31,7 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('');
     this.user = this.authService.user;
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.bgConfigService.setConfig({
       primaryColor: this.catConfig.primaryColor,
       secondaryColor: this.catConfig.secondaryColor,

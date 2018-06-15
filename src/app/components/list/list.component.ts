@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, Renderer2, OnChanges, SimpleChanges } from '@angular/core';
 import { ArticleService } from '../../services/api/article.service';
 import { AuthService } from '../../services/api/auth.service';
 import { Article} from '../../models/article';
@@ -14,6 +14,8 @@ import { loadingAnimation } from '../../global-anim';
 export class ListComponent implements OnInit {
 
   @Input() cat: string;
+  tag: string;
+  @Input() initLoad: boolean;
   @Input() showDatePicker: boolean;
   @Input() showCat: boolean;
   articles: Article[];
@@ -21,8 +23,8 @@ export class ListComponent implements OnInit {
   private loadLock: boolean;
   hasMore: boolean;
   noResult: boolean;
-  private offset: number;
-  private limit: number;
+  offset: number;
+  limit: number;
   private before: string;
   // private canScrollLoad: boolean;
   showLoading: boolean;
@@ -47,13 +49,27 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
+    // console.log(this.cat);
     this.user = this.authService.user;
-    this.getArticles();
+    // console.log(this.initLoad);
+    if (this.initLoad) {
+      this.getArticles();
+    }
     this.scrollHandler();
     window.addEventListener('scroll', () => {
       this.scrollHandler();
     });
   }
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   console.log(changes);
+  //   // for (let propName of changes) {
+  //   //   let chng = changes[propName];
+  //   //   let cur  = JSON.stringify(chng.currentValue);
+  //   //   let prev = JSON.stringify(chng.previousValue);
+  //   //   console.log(chng, cur, prev);
+  //   // }
+  // }
 
   scrollHandler() {
     const screenTop = document.body.scrollTop || document.documentElement.scrollTop,
@@ -74,13 +90,14 @@ export class ListComponent implements OnInit {
     }
   }
 
-  private getArticles() {
+  getArticles() {
+    // console.log(this.tag);
     if (this.loadLock) {
       return;
     }
     this.showLoading = true;
     this.loadLock = true;
-    this.articleService.getArticles(this.cat, this.before, '', '', this.offset, this.limit,
+    this.articleService.getArticles(this.cat, this.before, this.tag, '', this.offset, this.limit,
     (data) => {
       this.loadLock = false;
       this.showLoading = false;

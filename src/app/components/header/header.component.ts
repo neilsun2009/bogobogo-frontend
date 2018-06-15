@@ -71,7 +71,7 @@ export class HeaderComponent implements OnInit {
     }
     this.titleService.setTitle(titleWord);
     this.user = this.authService.user;
-    document.body.scrollTop = 0;
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.general = this.generalService.generalData.cats[this.cat];
     // this.easeOutService.easeOut$.subscribe((easeOut) => {
     //   console.log(easeOut);
