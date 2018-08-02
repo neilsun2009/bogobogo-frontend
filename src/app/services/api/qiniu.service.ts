@@ -8,7 +8,8 @@ import { Observable } from 'rxjs/Observable';
 export class QiniuService {
 
   private getTokenUrl = '/api/qiniu_token';
-  domainUrl = 'http://olxpdoc6c.bkt.clouddn.com/';
+  // domainUrl = 'http://olxpdoc6c.bkt.clouddn.com/';
+  domainUrl = 'https://static.bogobogo.cn/';
 
   constructor(
     private http: HttpService

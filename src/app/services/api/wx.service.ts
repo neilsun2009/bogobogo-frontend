@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 export class WXService {
 
   private getTokenUrl = '/api/wx_token';
-  domainUrl = 'http://olxpdoc6c.bkt.clouddn.com/';
 
   constructor(
     private http: HttpService
